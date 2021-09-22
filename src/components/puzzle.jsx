@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Grid } from './grid.jsx';
+
 const fillGrid = (rows, cols) => {
   return new Array(rows).fill([]).map(() => new Array(cols).fill({}));
 };
@@ -16,7 +18,10 @@ export const Puzzle = (props) => {
 
   return (
     <div id="puzzle">
-      <Grid cells={cells} />
+      <Grid
+        cells={cells}
+        rows={cells.length} cols={cells[0].length}
+      />
     </div>
   );
 };
