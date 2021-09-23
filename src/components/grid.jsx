@@ -7,7 +7,8 @@ export const Grid = ({ rows, cols, cells }) => {
 
   return (
     <svg
-      version="1.1" xmlns="http://www.w3.org/2000/svg" id="grid"
+      version="1.1" xmlns="http://www.w3.org/2000/svg"
+      id="grid" role="img"
       viewBox={`-16 -16 ${(cols * cellSize) + 32} ${(rows * cellSize) + 32}`}
     >
       {cells.map((row, j) => {
