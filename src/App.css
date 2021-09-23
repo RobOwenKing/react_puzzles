@@ -1,0 +1,23 @@
+svg#grid {
+  /* TODO: Responsive width/height */
+  height: 80vh;
+  width: auto;
+}
+
+rect {
+  fill: transparent;
+  stroke-width: 1;
+  stroke: black;
+}
+
+.fa-icon {
+  overflow: visible;
+}
+
+.fa-icon path {
+  transform: translate(-50%, -50%);
+}
+
+.fa-star {
+  color: #EFB831;
+}
