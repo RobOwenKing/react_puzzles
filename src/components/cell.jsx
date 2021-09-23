@@ -9,9 +9,8 @@ export const Cell = ({ i, j, contents, cellSize }) => {
   return (
     <g>
       <Star
-        className="fa-icon"
         x={(i+0.5) * cellSize} y={(j+0.5) * cellSize}
-        width={cellSize / 2} height={cellSize / 2}
+        width={cellSize * 0.66} height={cellSize * 0.66}
       />
       <rect
         x={i * cellSize} y={j * cellSize}

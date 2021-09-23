@@ -8,7 +8,7 @@ function App() {
       <header>
         <h1>Pencil Puzzles Without Pencils</h1>
       </header>
-      <Puzzle rows={3} cols={3} />
+      <Puzzle rows={6} cols={6} />
     </div>
   );
 }

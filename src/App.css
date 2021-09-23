@@ -17,3 +17,7 @@ rect {
 .fa-icon path {
   transform: translate(-50%, -50%);
 }
+
+.fa-star {
+  color: #EFB831;
+}
