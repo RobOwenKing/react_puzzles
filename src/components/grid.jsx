@@ -4,6 +4,11 @@ import { Cell } from './cell.jsx';
 
 export const Grid = ({ rows, cols, cells }) => {
   const [cellSize, setCellSize] = React.useState(100);
+  const [selecteds, setSelecteds] = React.useState([]);
+
+  const handleCellClick = (i, j) => {
+    setSelecteds([[i,j]]);
+  };
 
   return (
     <svg
@@ -15,10 +20,11 @@ export const Grid = ({ rows, cols, cells }) => {
         return row.map((contents, i) => {
           return (
             <Cell
-              key={(j * cols) + i}
-              i={i} j={j}
+              key={(j * cols) + i} i={i} j={j}
               cell={contents}
               cellSize={cellSize}
+              clickHandler={handleCellClick}
+              selected={selecteds.some(cell => cell[0] === i && cell[1] === j)}
             />
           )
         })

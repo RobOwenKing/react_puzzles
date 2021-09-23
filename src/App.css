@@ -10,6 +10,11 @@ rect {
   stroke: black;
 }
 
+rect.selected {
+  stroke-width: 3;
+  stroke: #566246;
+}
+
 .fa-icon {
   overflow: visible;
 }
