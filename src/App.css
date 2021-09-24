@@ -12,7 +12,7 @@ rect {
 
 rect.selected {
   stroke-width: 5;
-  stroke: #566246;
+  stroke: #3D8116;
 }
 
 .fa-icon {
@@ -24,5 +24,5 @@ rect.selected {
 }
 
 .fa-star {
-  color: #EFB831;
+  color: #F5B700;
 }

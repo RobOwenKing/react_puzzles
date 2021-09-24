@@ -2,13 +2,11 @@ import React from 'react';
 
 import { Grid } from './grid.jsx';
 
-const fillGrid = (rows, cols) => {
-  return new Array(rows).fill([]).map(() => new Array(cols).fill({}));
-};
+import { create2DArray } from '../helpers/create_2D_array.js';
 
 const initialCells = (props) => {
   if (props.cells) { return props.cells; }
-  if (props.rows && props.cols) { return fillGrid(props.rows, props.cols); }
+  if (props.rows && props.cols) { return create2DArray(props.rows, props.cols); }
 
   throw new Error('<Puzzle> needs either props.cells or props.rows and props.cols');
 };
