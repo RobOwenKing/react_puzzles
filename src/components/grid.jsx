@@ -11,9 +11,15 @@ const updateIsSelected = (oldSelecteds, newSelecteds, isSelected, setIsSelected)
   setIsSelected(newIsSelected);
 };
 
-const addCellToSelecteds = (i, j, selecteds, setSelecteds, isSelected, setIsSelected) => {
+const setCellAsSelected = (i, j, selecteds, setSelecteds, isSelected, setIsSelected) => {
+  const newSelecteds = [[i, j]];
+  setSelecteds(newSelecteds);
+  updateIsSelected(selecteds, newSelecteds, isSelected, setIsSelected);
+};
+
+const pushCellToSelecteds = (i, j, selecteds, setSelecteds, isSelected, setIsSelected) => {
   const newSelecteds = [...selecteds];
-  newSelecteds[0] = [i, j];
+  newSelecteds.push([i, j]);
   setSelecteds(newSelecteds);
   updateIsSelected(selecteds, newSelecteds, isSelected, setIsSelected);
 };
@@ -22,10 +28,23 @@ export const Grid = ({ rows, cols, cells }) => {
   const [cellSize, setCellSize] = React.useState(100);
   const [selecteds, setSelecteds] = React.useState([]);
   const [isSelected, setIsSelected] = React.useState(create2DArray(rows, cols, false));
+  const [multiSelect, setMultiSelect] = React.useState(false);
 
   const handleCellMouseDown = (i, j) => {
-    addCellToSelecteds(i, j, selecteds, setSelecteds, isSelected, setIsSelected);
+    setCellAsSelected(i, j, selecteds, setSelecteds, isSelected, setIsSelected);
+    setMultiSelect(true);
   };
+
+  const handleCellMouseOver = (i, j) => {
+    if (multiSelect) {
+      pushCellToSelecteds(i, j, selecteds, setSelecteds, isSelected, setIsSelected);
+    }
+  };
+
+  const mouseUpHandler = (event) => {
+    event.preventDefault();
+    setMultiSelect(false);
+  }
 
   return (
     <svg
@@ -33,19 +52,22 @@ export const Grid = ({ rows, cols, cells }) => {
       id="grid" role="img"
       viewBox={`-16 -16 ${(cols * cellSize) + 32} ${(rows * cellSize) + 32}`}
     >
-      {cells.map((row, j) => {
-        return row.map((contents, i) => {
-          return (
-            <Cell
-              key={`${i}-${j}`} i={i} j={j}
-              cell={contents}
-              cellSize={cellSize}
-              mouseDownHandler={handleCellMouseDown}
-              selected={isSelected[j][i]}
-            />
-          )
-        })
-      })}
+      <g onMouseUp={mouseUpHandler}>
+        {cells.map((row, j) => {
+          return row.map((contents, i) => {
+            return (
+              <Cell
+                key={`${i}-${j}`} i={i} j={j}
+                cell={contents}
+                cellSize={cellSize}
+                mouseDownHandler={handleCellMouseDown}
+                mouseOverHandler={handleCellMouseOver}
+                selected={isSelected[j][i]}
+              />
+            )
+          })
+        })}
+      </g>
     </svg>
   );
 };

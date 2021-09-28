@@ -2,13 +2,16 @@ import React from 'react';
 
 import { ReactComponent as Star } from '../svg/star-solid.svg';
 
-export const Cell = ({ i, j, contents, cellSize, mouseDownHandler, selected }) => {
+export const Cell = ({ i, j, contents, cellSize, mouseDownHandler, mouseOverHandler, selected }) => {
   const handleMouseDown = (event) => {
     event.preventDefault();
     mouseDownHandler(i, j);
   }
 
-  React.useEffect(() => {console.log('useEffect');})
+  const handleMouseOver = (event) => {
+    event.preventDefault();
+    mouseOverHandler(i, j);
+  }
 
   return (
     <g>
@@ -24,7 +27,8 @@ export const Cell = ({ i, j, contents, cellSize, mouseDownHandler, selected }) =
       <rect
         x={i * cellSize} y={j * cellSize}
         width={cellSize} height={cellSize}
-        onMouseDown={handleMouseDown} />
+        onMouseDown={handleMouseDown}
+        onMouseOver={handleMouseOver} />
     </g>
   );
 };
