@@ -2,10 +2,10 @@ import React from 'react';
 
 import { ReactComponent as Star } from '../svg/star-solid.svg';
 
-export const Cell = ({ i, j, contents, cellSize, clickHandler, selected }) => {
-  const handleClick = (event) => {
+export const Cell = ({ i, j, contents, cellSize, mouseDownHandler, selected }) => {
+  const handleMouseDown = (event) => {
     event.preventDefault();
-    clickHandler(i, j);
+    mouseDownHandler(i, j);
   }
 
   React.useEffect(() => {console.log('useEffect');})
@@ -24,7 +24,7 @@ export const Cell = ({ i, j, contents, cellSize, clickHandler, selected }) => {
       <rect
         x={i * cellSize} y={j * cellSize}
         width={cellSize} height={cellSize}
-        onClick={handleClick} />
+        onMouseDown={handleMouseDown} />
     </g>
   );
 };

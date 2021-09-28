@@ -2,12 +2,29 @@ import React from 'react';
 
 import { Cell } from './cell.jsx';
 
+import { create2DArray } from '../helpers/create_2D_array.js';
+
+const updateIsSelected = (oldSelecteds, newSelecteds, isSelected, setIsSelected) => {
+  const newIsSelected = [...isSelected];
+  oldSelecteds.forEach(([i, j]) => {newIsSelected[j][i] = false});
+  newSelecteds.forEach(([i, j]) => {newIsSelected[j][i] = true});
+  setIsSelected(newIsSelected);
+};
+
+const addCellToSelecteds = (i, j, selecteds, setSelecteds, isSelected, setIsSelected) => {
+  const newSelecteds = [...selecteds];
+  newSelecteds[0] = [i, j];
+  setSelecteds(newSelecteds);
+  updateIsSelected(selecteds, newSelecteds, isSelected, setIsSelected);
+};
+
 export const Grid = ({ rows, cols, cells }) => {
   const [cellSize, setCellSize] = React.useState(100);
   const [selecteds, setSelecteds] = React.useState([]);
+  const [isSelected, setIsSelected] = React.useState(create2DArray(rows, cols, false));
 
-  const handleCellClick = (i, j) => {
-    setSelecteds([[i,j]]);
+  const handleCellMouseDown = (i, j) => {
+    addCellToSelecteds(i, j, selecteds, setSelecteds, isSelected, setIsSelected);
   };
 
   return (
@@ -20,11 +37,11 @@ export const Grid = ({ rows, cols, cells }) => {
         return row.map((contents, i) => {
           return (
             <Cell
-              key={(j * cols) + i} i={i} j={j}
+              key={`${i}-${j}`} i={i} j={j}
               cell={contents}
               cellSize={cellSize}
-              clickHandler={handleCellClick}
-              selected={selecteds.some(cell => cell[0] === i && cell[1] === j)}
+              mouseDownHandler={handleCellMouseDown}
+              selected={isSelected[j][i]}
             />
           )
         })
