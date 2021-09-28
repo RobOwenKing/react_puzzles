@@ -30,8 +30,12 @@ export const Grid = ({ rows, cols, cells }) => {
   const [isSelected, setIsSelected] = React.useState(create2DArray(rows, cols, false));
   const [multiSelect, setMultiSelect] = React.useState(false);
 
-  const handleCellMouseDown = (i, j) => {
-    setCellAsSelected(i, j, selecteds, setSelecteds, isSelected, setIsSelected);
+  const handleCellMouseDown = (event, i, j) => {
+    if (event.ctrlKey || event.shiftKey) {
+      pushCellToSelecteds(i, j, selecteds, setSelecteds, isSelected, setIsSelected);
+    } else {
+      setCellAsSelected(i, j, selecteds, setSelecteds, isSelected, setIsSelected);
+    }
     setMultiSelect(true);
   };
 
@@ -44,7 +48,7 @@ export const Grid = ({ rows, cols, cells }) => {
   const mouseUpHandler = (event) => {
     event.preventDefault();
     setMultiSelect(false);
-  }
+  };
 
   return (
     <svg

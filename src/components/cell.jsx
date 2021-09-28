@@ -5,7 +5,7 @@ import { ReactComponent as Star } from '../svg/star-solid.svg';
 export const Cell = ({ i, j, contents, cellSize, mouseDownHandler, mouseOverHandler, selected }) => {
   const handleMouseDown = (event) => {
     event.preventDefault();
-    mouseDownHandler(i, j);
+    mouseDownHandler(event, i, j);
   }
 
   const handleMouseOver = (event) => {
