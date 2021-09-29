@@ -1,8 +1,12 @@
 import './App.css';
 
+import React from 'react';
+
 import { Puzzle } from './components/puzzle.jsx';
 
 function App() {
+  const [constraints, setConstraints] = React.useState({});
+
   return (
     <div>
       <header>
@@ -10,7 +14,7 @@ function App() {
       </header>
       <Puzzle
         rows={6} cols={6}
-        constraints={{}}
+        constraints={constraints} setConstraints={setConstraints}
       />
     </div>
   );

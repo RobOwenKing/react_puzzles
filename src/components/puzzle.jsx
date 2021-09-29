@@ -13,7 +13,6 @@ const initialCells = (props) => {
 
 export const Puzzle = (props) => {
   const [cells, setCells] = React.useState(initialCells(props));
-  const [constraints, setConstraints] = React.useState(props.constraints);
 
   return (
     <div id="puzzle">
