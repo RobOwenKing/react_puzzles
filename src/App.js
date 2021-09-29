@@ -8,7 +8,10 @@ function App() {
       <header>
         <h1>Pencil Puzzles Without Pencils</h1>
       </header>
-      <Puzzle rows={6} cols={6} />
+      <Puzzle
+        rows={6} cols={6}
+        constraints={{}}
+      />
     </div>
   );
 }
