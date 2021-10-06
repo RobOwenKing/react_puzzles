@@ -60,7 +60,9 @@ export const Grid = ({ rows, cols, cells, constraints, regions, setRegions }) =>
       { constraints.regions &&
             <Regions
               rows={rows} cols={cols}
-              regions={regions} setRegions={setRegions} /> }
+              regions={regions} setRegions={setRegions}
+              cellSize={cellSize}
+            /> }
       <g id="cells" onMouseUp={mouseUpHandler}>
         {cells.map((row, j) => {
           return row.map((contents, i) => {
