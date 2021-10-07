@@ -19,6 +19,8 @@ export const Puzzle = (props) => {
       <Grid
         cells={cells}
         rows={cells.length} cols={cells[0].length}
+        constraints={props.constraints}
+        regions={props.regions} setRegions={props.setRegions}
       />
     </div>
   );

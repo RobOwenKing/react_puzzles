@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Cell } from './cell.jsx';
+import { Regions } from './regions.jsx';
 
 import { create2DArray } from '../helpers/create_2D_array.js';
 
@@ -24,7 +25,7 @@ const pushCellToSelecteds = (i, j, selecteds, setSelecteds, isSelected, setIsSel
   updateIsSelected(selecteds, newSelecteds, isSelected, setIsSelected);
 };
 
-export const Grid = ({ rows, cols, cells }) => {
+export const Grid = ({ rows, cols, cells, constraints, regions, setRegions }) => {
   const [cellSize, setCellSize] = React.useState(100);
   const [selecteds, setSelecteds] = React.useState([]);
   const [isSelected, setIsSelected] = React.useState(create2DArray(rows, cols, false));
@@ -56,7 +57,13 @@ export const Grid = ({ rows, cols, cells }) => {
       id="grid" role="img"
       viewBox={`-16 -16 ${(cols * cellSize) + 32} ${(rows * cellSize) + 32}`}
     >
-      <g onMouseUp={mouseUpHandler}>
+      { constraints.regions &&
+            <Regions
+              rows={rows} cols={cols}
+              regions={regions} setRegions={setRegions}
+              cellSize={cellSize}
+            /> }
+      <g id="cells" onMouseUp={mouseUpHandler}>
         {cells.map((row, j) => {
           return row.map((contents, i) => {
             return (
