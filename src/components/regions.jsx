@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { create2DArray } from '../helpers/create_2D_array.js';
+import { create2DArray } from '../helpers/create2DArray.js';
 
 const calculateDefaultCageWidth = (cols) => {
   let testValue = Math.ceil(Math.sqrt(cols));

@@ -3,7 +3,9 @@ import React from 'react';
 import { Cell } from './cell.jsx';
 import { Regions } from './regions.jsx';
 
-import { create2DArray } from '../helpers/create_2D_array.js';
+import { create2DArray } from '../helpers/create2DArray.js';
+
+import { useEventListener } from '../hooks/useEventListener.js';
 
 const updateIsSelected = (oldSelecteds, newSelecteds, isSelected, setIsSelected) => {
   const newIsSelected = [...isSelected];

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Grid } from './grid.jsx';
 
-import { create2DArray } from '../helpers/create_2D_array.js';
+import { create2DArray } from '../helpers/create2DArray.js';
 
 const initialCells = (props) => {
   if (props.cells) { return props.cells; }
