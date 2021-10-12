@@ -68,7 +68,7 @@ export const Grid = ({ rows, cols, cells, selecteds, setSelecteds, constraints, 
             return (
               <Cell
                 key={`${i}-${j}`} i={i} j={j}
-                cell={contents}
+                contents={contents}
                 cellSize={cellSize}
                 mouseDownHandler={handleCellMouseDown}
                 mouseOverHandler={handleCellMouseOver}
