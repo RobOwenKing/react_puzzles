@@ -14,11 +14,13 @@ const initialCells = (props) => {
 
 export const Puzzle = (props) => {
   const [cells, setCells] = React.useState(initialCells(props));
+  const [selecteds, setSelecteds] = React.useState([]);
 
   return (
     <div id="puzzle">
       <Grid
         cells={cells}
+        selecteds={selecteds} setSelecteds={setSelecteds}
         rows={cells.length} cols={cells[0].length}
         constraints={props.constraints}
         regions={props.regions} setRegions={props.setRegions}

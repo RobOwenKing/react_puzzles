@@ -25,9 +25,8 @@ const pushCellToSelecteds = (i, j, selecteds, setSelecteds, isSelected, setIsSel
   updateIsSelected(selecteds, newSelecteds, isSelected, setIsSelected);
 };
 
-export const Grid = ({ rows, cols, cells, constraints, regions, setRegions }) => {
+export const Grid = ({ rows, cols, cells, selecteds, setSelecteds, constraints, regions, setRegions }) => {
   const [cellSize, setCellSize] = React.useState(100);
-  const [selecteds, setSelecteds] = React.useState([]);
   const [isSelected, setIsSelected] = React.useState(create2DArray(rows, cols, false));
   const [multiSelect, setMultiSelect] = React.useState(false);
 
