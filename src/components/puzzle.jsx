@@ -26,6 +26,7 @@ export const Puzzle = (props) => {
         regions={props.regions} setRegions={props.setRegions}
       />
       <PlayerUI
+        selecteds={selecteds}
         cells={cells} setCells={setCells}
       />
     </div>
