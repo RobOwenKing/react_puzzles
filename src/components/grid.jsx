@@ -5,8 +5,6 @@ import { Regions } from './regions.jsx';
 
 import { create2DArray } from '../helpers/create2DArray.js';
 
-import { useEventListener } from '../hooks/useEventListener.js';
-
 const updateIsSelected = (oldSelecteds, newSelecteds, isSelected, setIsSelected) => {
   const newIsSelected = [...isSelected];
   oldSelecteds.forEach(([i, j]) => {newIsSelected[j][i] = false});

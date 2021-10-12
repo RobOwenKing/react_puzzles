@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Grid } from './grid.jsx';
+import { PlayerUI } from './playerUI.jsx';
 
 import { create2DArray } from '../helpers/create2DArray.js';
 
@@ -21,6 +22,9 @@ export const Puzzle = (props) => {
         rows={cells.length} cols={cells[0].length}
         constraints={props.constraints}
         regions={props.regions} setRegions={props.setRegions}
+      />
+      <PlayerUI
+        cells={cells} setCells={setCells}
       />
     </div>
   );
