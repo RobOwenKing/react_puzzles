@@ -3,8 +3,8 @@ import React from 'react';
 import { useEventListener } from '../hooks/useEventListener.js';
 
 export const PlayerUI = ({ selecteds, cells, setCells }) => {
-  const handleInput = (e) => {
-    if (e.key === '1') {
+  const inputHandler = (key) => {
+    if (key === '1') {
       const newCells = [...cells];
 
       selecteds.forEach(([i, j]) => {
@@ -14,7 +14,7 @@ export const PlayerUI = ({ selecteds, cells, setCells }) => {
     }
   };
 
-  useEventListener('keydown', (e) => { handleInput(e) });
+  useEventListener('keydown', (e) => { inputHandler(e.key) });
 
   return (
     <svg></svg>
