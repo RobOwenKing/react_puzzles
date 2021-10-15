@@ -9,16 +9,16 @@ const INPUT_TO_ENTRY = {
 
 const updateCellEntry = (cells, i, j, newEntry) => {
   if ('entry' in newEntry) {
-    if (cells[j][i] === newEntry['entry']) {
+    if (cells[j][i]['entry'] === newEntry['entry']) {
       cells[j][i]['entry'] = '';
     } else {
       cells[j][i]['entry'] = newEntry['entry'];
     }
   } else if ('centres' in newEntry) {
-    if (cells[j][i]['centres'].includes(newEntry['entry'])) {
-      //cells[j][i]['entry'] = '';
+    if (cells[j][i]['centres'].includes(newEntry['centres'])) {
+      cells[j][i]['centres'] = cells[j][i]['centres'].filter(entry => entry !== newEntry['centres']);
     } else {
-      cells[j][i]['centres'].push(newEntry['entry']);
+      cells[j][i]['centres'].push(newEntry['centres']);
     }
   }
 };
