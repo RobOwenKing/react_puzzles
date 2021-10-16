@@ -13,9 +13,12 @@ export const create2DArray = (rows, cols, fillValue = '.') => {
 export const createCells = (rows, cols) => {
   const template = create2DArray(rows, cols);
 
-  const returnable = template.map((row) => {
-    return row.map((element) => {
-      return { centres: [] };
+  const returnable = template.map((row, j) => {
+    return row.map((element, i) => {
+      return {
+        id: j * cols + i,
+        centres: []
+      };
     })
   });
 

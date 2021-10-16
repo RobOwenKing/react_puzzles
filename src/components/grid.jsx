@@ -67,7 +67,7 @@ export const Grid = ({ rows, cols, cells, selecteds, setSelecteds, constraints, 
           return row.map((contents, i) => {
             return (
               <Cell
-                key={`${i}-${j}`} i={i} j={j}
+                key={contents.id} i={i} j={j}
                 contents={contents}
                 cellSize={cellSize}
                 mouseDownHandler={handleCellMouseDown}
