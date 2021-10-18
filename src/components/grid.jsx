@@ -3,8 +3,6 @@ import React from 'react';
 import { Cell } from './cell.jsx';
 import { Regions } from './regions.jsx';
 
-import { create2DArray } from '../helpers/create2DArray.js';
-
 const setCellAsSelected = (id, selecteds, setSelecteds) => {
   setSelecteds([id]);
 };
@@ -15,7 +13,6 @@ const pushCellToSelecteds = (id, selecteds, setSelecteds) => {
 
 export const Grid = ({ rows, cols, cells, selecteds, setSelecteds, constraints, regions, setRegions }) => {
   const [cellSize, setCellSize] = React.useState(100);
-  const [isSelected, setIsSelected] = React.useState(create2DArray(rows, cols, false));
   const [multiSelect, setMultiSelect] = React.useState(false);
 
   const handleCellMouseDown = (event, id) => {
