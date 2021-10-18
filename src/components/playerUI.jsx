@@ -23,7 +23,7 @@ const updateCellEntry = (cells, i, j, newEntry) => {
   }
 };
 
-export const PlayerUI = ({ selecteds, cells, setCells }) => {
+export const PlayerUI = ({ selecteds, cells, setCells, checkErrors }) => {
   const inputHandler = (key) => {
     console.log(key);
 
@@ -34,6 +34,7 @@ export const PlayerUI = ({ selecteds, cells, setCells }) => {
       selecteds.forEach(([i, j]) => {
         updateCellEntry(newCells, i, j, newEntry);
       });
+      checkErrors(newCells, selecteds);
       setCells(newCells);
     }
   };

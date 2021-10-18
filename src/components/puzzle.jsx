@@ -17,6 +17,10 @@ const initialConstraints = (puzzle, rows, cols, regions, setConstraints) => {
   puzzleToConstraints(puzzle, rows, cols, regions, setConstraints);
 };
 
+const checkCellForErrors = (cell, allCells) => {
+  console.log(cell);
+};
+
 export const Puzzle = (props) => {
   const [cells, setCells] = React.useState(initialCells(props));
   const [selecteds, setSelecteds] = React.useState([]);
@@ -24,6 +28,12 @@ export const Puzzle = (props) => {
   React.useEffect(() => {
     initialConstraints(props.puzzle, props.rows, props.cols, props.regions, props.setConstraints);
   }, []);
+
+  const checkErrors = (allCells, cellsToCheck) => {
+    cellsToCheck.forEach((cell) => {
+      checkCellForErrors(cell, allCells)
+    });
+  };
 
   return (
     <div id="puzzle">
@@ -37,6 +47,7 @@ export const Puzzle = (props) => {
       <PlayerUI
         selecteds={selecteds}
         cells={cells} setCells={setCells}
+        checkErrors={checkErrors}
       />
     </div>
   );
