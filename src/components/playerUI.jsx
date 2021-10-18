@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { idToIJ } from '../helpers/idToIJ.js';
+
 import { useEventListener } from '../hooks/useEventListener.js';
 
 const INPUT_TO_ENTRY = {
@@ -23,7 +25,7 @@ const updateCellEntry = (cells, i, j, newEntry) => {
   }
 };
 
-export const PlayerUI = ({ selecteds, cells, setCells, checkErrors }) => {
+export const PlayerUI = ({ selecteds, cells, setCells, cols, checkErrors }) => {
   const inputHandler = (key) => {
     console.log(key);
 
@@ -31,7 +33,8 @@ export const PlayerUI = ({ selecteds, cells, setCells, checkErrors }) => {
       const newCells = [...cells];
       const newEntry = INPUT_TO_ENTRY[key];
 
-      selecteds.forEach(([i, j]) => {
+      selecteds.forEach((id) => {
+        const [i, j] = idToIJ(id, cols);
         updateCellEntry(newCells, i, j, newEntry);
       });
       checkErrors(newCells, selecteds);
