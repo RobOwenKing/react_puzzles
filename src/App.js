@@ -6,6 +6,7 @@ import { Puzzle } from './components/puzzle.jsx';
 
 function App() {
   const [constraints, setConstraints] = React.useState({regions: 'sb'});
+  const [puzzle, setPuzzle] = React.useState({'starbattle': 1});
   const [regions, setRegions] = React.useState([]);
 
   return (
@@ -16,6 +17,7 @@ function App() {
       <Puzzle
         rows={6} cols={6}
         constraints={constraints} setConstraints={setConstraints}
+        puzzle={puzzle} setPuzzle={setPuzzle}
         regions={regions} setRegions={setRegions}
       />
     </div>

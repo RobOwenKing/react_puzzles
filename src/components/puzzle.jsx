@@ -3,7 +3,8 @@ import React from 'react';
 import { Grid } from './grid.jsx';
 import { PlayerUI } from './playerUI.jsx';
 
-import { create2DArray, createCells } from '../helpers/create2DArray.js';
+import { createCells } from '../helpers/create2DArray.js';
+import { puzzleToConstraints } from '../helpers/puzzleToConstraints.js';
 
 const initialCells = (props) => {
   if (props.cells) { return props.cells; }
@@ -12,9 +13,17 @@ const initialCells = (props) => {
   throw new Error('<Puzzle> needs either props.cells or props.rows and props.cols');
 };
 
+const initialConstraints = (puzzle, rows, cols, regions, setConstraints) => {
+  puzzleToConstraints(puzzle, rows, cols, regions, setConstraints);
+};
+
 export const Puzzle = (props) => {
   const [cells, setCells] = React.useState(initialCells(props));
   const [selecteds, setSelecteds] = React.useState([]);
+
+  React.useEffect(() => {
+    initialConstraints(props.puzzle, props.rows, props.cols, props.regions, props.setConstraints);
+  }, []);
 
   return (
     <div id="puzzle">
