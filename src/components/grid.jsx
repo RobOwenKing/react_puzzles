@@ -5,24 +5,12 @@ import { Regions } from './regions.jsx';
 
 import { create2DArray } from '../helpers/create2DArray.js';
 
-const updateIsSelected = (oldSelecteds, newSelecteds, isSelected, setIsSelected) => {
-  const newIsSelected = [...isSelected];
-  oldSelecteds.forEach(([i, j]) => {newIsSelected[j][i] = false});
-  newSelecteds.forEach(([i, j]) => {newIsSelected[j][i] = true});
-  setIsSelected(newIsSelected);
+const setCellAsSelected = (id, selecteds, setSelecteds) => {
+  setSelecteds([id]);
 };
 
-const setCellAsSelected = (i, j, selecteds, setSelecteds, isSelected, setIsSelected) => {
-  const newSelecteds = [[i, j]];
-  setSelecteds(newSelecteds);
-  updateIsSelected(selecteds, newSelecteds, isSelected, setIsSelected);
-};
-
-const pushCellToSelecteds = (i, j, selecteds, setSelecteds, isSelected, setIsSelected) => {
-  const newSelecteds = [...selecteds];
-  newSelecteds.push([i, j]);
-  setSelecteds(newSelecteds);
-  updateIsSelected(selecteds, newSelecteds, isSelected, setIsSelected);
+const pushCellToSelecteds = (id, selecteds, setSelecteds) => {
+  setSelecteds([...selecteds, id]);
 };
 
 export const Grid = ({ rows, cols, cells, selecteds, setSelecteds, constraints, regions, setRegions }) => {
@@ -30,18 +18,18 @@ export const Grid = ({ rows, cols, cells, selecteds, setSelecteds, constraints, 
   const [isSelected, setIsSelected] = React.useState(create2DArray(rows, cols, false));
   const [multiSelect, setMultiSelect] = React.useState(false);
 
-  const handleCellMouseDown = (event, i, j) => {
+  const handleCellMouseDown = (event, id) => {
     if (event.ctrlKey || event.shiftKey) {
-      pushCellToSelecteds(i, j, selecteds, setSelecteds, isSelected, setIsSelected);
+      pushCellToSelecteds(id, selecteds, setSelecteds);
     } else {
-      setCellAsSelected(i, j, selecteds, setSelecteds, isSelected, setIsSelected);
+      setCellAsSelected(id, selecteds, setSelecteds);
     }
     setMultiSelect(true);
   };
 
-  const handleCellMouseOver = (i, j) => {
+  const handleCellMouseOver = (id) => {
     if (multiSelect) {
-      pushCellToSelecteds(i, j, selecteds, setSelecteds, isSelected, setIsSelected);
+      pushCellToSelecteds(id, selecteds, setSelecteds);
     }
   };
 
@@ -67,12 +55,12 @@ export const Grid = ({ rows, cols, cells, selecteds, setSelecteds, constraints, 
           return row.map((contents, i) => {
             return (
               <Cell
-                key={contents.id} i={i} j={j}
+                key={contents.id} id={contents.id}
                 contents={contents}
-                cellSize={cellSize}
+                i={i} j={j} cellSize={cellSize}
                 mouseDownHandler={handleCellMouseDown}
                 mouseOverHandler={handleCellMouseOver}
-                selected={isSelected[j][i]}
+                selected={selecteds.includes(contents.id)}
               />
             )
           })

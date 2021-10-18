@@ -2,15 +2,15 @@ import React from 'react';
 
 import { ReactComponent as Star } from '../svg/star-solid.svg';
 
-export const Cell = ({ i, j, contents, cellSize, mouseDownHandler, mouseOverHandler, selected }) => {
+export const Cell = ({ i, j, id, contents, cellSize, mouseDownHandler, mouseOverHandler, selected }) => {
   const handleMouseDown = (event) => {
     event.preventDefault();
-    mouseDownHandler(event, i, j);
+    mouseDownHandler(event, id);
   }
 
   const handleMouseOver = (event) => {
     event.preventDefault();
-    mouseOverHandler(i, j);
+    mouseOverHandler(id);
   }
 
   return (
