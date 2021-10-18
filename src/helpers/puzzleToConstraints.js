@@ -12,8 +12,24 @@ const parseStarBattleRows = (constraints, rows, cols) => {
   }
 };
 
+const parseStarBattleCols = (constraints, rows, cols) => {
+  for (let i = 0; i < cols; i += 1) {
+    const colConstraint = {
+      'type': 'sb_house',
+      'keys': [],
+      'errors': []
+    }
+    for (let j = 0; j < rows; j += 1) {
+      colConstraint.keys.push(j * cols + i);
+    }
+    constraints.push(colConstraint);
+  }
+};
+
 const parseStarBattle = (constraints, value, rows, cols, regions) => {
   parseStarBattleRows(constraints, rows, cols);
+  parseStarBattleCols(constraints, rows, cols);
+
   console.log(constraints);
 };
 
@@ -28,5 +44,5 @@ export const puzzleToConstraints = (puzzle, rows, cols, regions, setConstraints)
     PARSE_PUZZLE[key].call(this, newConstraints, value, rows, cols, regions);
   }
 
-  setConstraints(newConstraints);
+  //setConstraints(newConstraints);
 };
