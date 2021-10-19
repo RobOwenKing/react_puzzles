@@ -12,7 +12,7 @@ function App() {
   const cols = 6;
   const [puzzle, setPuzzle] = React.useState({'starbattle': 1});
   const [regions, setRegions] = React.useState(setDefaultRegions(rows, cols));
-  const [constraints, setConstraints] = React.useState({regions: 'sb'});
+  const [constraints, setConstraints] = React.useState({});
 
   React.useEffect(() => {
     puzzleToConstraints(puzzle, rows, cols, regions, setConstraints);

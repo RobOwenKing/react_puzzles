@@ -1,13 +1,17 @@
-import { idToIJ } from './idToIJ.js';
-
-const checkSBHouse = (constraint, cells, puzzle) => {
+const checkSBHouse = (constraint, index, cells, puzzle) => {
   let count = 0;
 
   constraint.ids.forEach((id) => {
     if (cells[id].entry === 'star') { count += 1; }
   });
 
-  console.log(count > puzzle.starbattle)
+  if (count > puzzle.starbattle) {
+    constraint.ids.forEach((id) => { cells[id].errors.push(index); })
+  } else {
+    constraint.ids.forEach((id) => {
+      cells[id].errors = cells[id].errors.filter(num => num !== index);
+    })
+  }
 };
 
 const ERROR_CHECKERS = {
@@ -16,7 +20,7 @@ const ERROR_CHECKERS = {
 
 export const checkCellForErrors = (cell, allCells, constraints, puzzle) => {
   constraints.filter(constraint => constraint.ids.includes(cell))
-      .forEach((constraint) => {
-        ERROR_CHECKERS[constraint.type].call(this, constraint, allCells, puzzle);
+      .forEach((constraint, index) => {
+        ERROR_CHECKERS[constraint.type].call(this, constraint, index, allCells, puzzle);
       })
 };

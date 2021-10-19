@@ -19,7 +19,8 @@ export const createCells = (rows, cols) => {
         'id': j * cols + i,
         'i': i,
         'j': j,
-        'centres': []
+        'centres': [],
+        'errors': []
       });
     }
   }
