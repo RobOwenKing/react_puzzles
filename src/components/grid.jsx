@@ -44,7 +44,7 @@ export const Grid = ({ rows, cols, cells, selecteds, setSelecteds, constraints, 
       { constraints.regions &&
             <Regions
               rows={rows} cols={cols}
-              regions={regions} setRegions={setRegions}
+              regions={regions}
               cellSize={cellSize}
             /> }
       <g id="cells" onMouseUp={mouseUpHandler}>

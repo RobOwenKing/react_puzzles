@@ -2,11 +2,11 @@ const parseStarBattleRows = (constraints, rows, cols) => {
   for (let j = 0; j < rows; j += 1) {
     const rowConstraint = {
       'type': 'sb_house',
-      'keys': [],
+      'ids': [],
       'errors': []
     }
     for (let i = 0; i < cols; i += 1) {
-      rowConstraint.keys.push(j * cols + i);
+      rowConstraint.ids.push(j * cols + i);
     }
     constraints.push(rowConstraint);
   }
@@ -16,11 +16,11 @@ const parseStarBattleCols = (constraints, rows, cols) => {
   for (let i = 0; i < cols; i += 1) {
     const colConstraint = {
       'type': 'sb_house',
-      'keys': [],
+      'ids': [],
       'errors': []
     }
     for (let j = 0; j < rows; j += 1) {
-      colConstraint.keys.push(j * cols + i);
+      colConstraint.ids.push(j * cols + i);
     }
     constraints.push(colConstraint);
   }
