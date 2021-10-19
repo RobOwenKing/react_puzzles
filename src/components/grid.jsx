@@ -48,19 +48,17 @@ export const Grid = ({ rows, cols, cells, selecteds, setSelecteds, constraints, 
               cellSize={cellSize}
             /> }
       <g id="cells" onMouseUp={mouseUpHandler}>
-        {cells.map((row, j) => {
-          return row.map((contents, i) => {
-            return (
-              <Cell
-                key={contents.id} id={contents.id}
-                contents={contents}
-                i={i} j={j} cellSize={cellSize}
-                mouseDownHandler={handleCellMouseDown}
-                mouseOverHandler={handleCellMouseOver}
-                selected={selecteds.includes(contents.id)}
-              />
-            )
-          })
+        {cells.map((cell) => {
+          return (
+            <Cell
+              key={cell.id} id={cell.id}
+              contents={cell}
+              i={cell.i} j={cell.j} cellSize={cellSize}
+              mouseDownHandler={handleCellMouseDown}
+              mouseOverHandler={handleCellMouseOver}
+              selected={selecteds.includes(cell.id)}
+            />
+          )
         })}
       </g>
     </svg>

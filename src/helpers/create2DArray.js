@@ -11,16 +11,18 @@ export const create2DArray = (rows, cols, fillValue = '.') => {
 };
 
 export const createCells = (rows, cols) => {
-  const template = create2DArray(rows, cols);
+  const returnable = [];
 
-  const returnable = template.map((row, j) => {
-    return row.map((element, i) => {
-      return {
-        id: j * cols + i,
-        centres: []
-      };
-    })
-  });
+  for (let j = 0; j < rows; j += 1) {
+    for (let i = 0; i < cols; i += 1) {
+      returnable.push({
+        'id': j * cols + i,
+        'i': i,
+        'j': j,
+        'centres': []
+      });
+    }
+  }
 
   return returnable;
 };

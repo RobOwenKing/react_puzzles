@@ -28,7 +28,7 @@ export const Puzzle = (props) => {
       <Grid
         cells={cells}
         selecteds={selecteds} setSelecteds={setSelecteds}
-        rows={cells.length} cols={cells[0].length}
+        rows={props.rows} cols={props.cols}
         constraints={props.constraints}
         regions={props.regions}
       />
