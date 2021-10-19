@@ -28,6 +28,10 @@ rect.selected {
   transform: translate(-50%, -50%);
 }
 
+g.error .fa-star {
+  color: red;
+}
+
 .fa-star {
   color: #F5B700;
 }
