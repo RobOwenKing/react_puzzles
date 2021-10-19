@@ -28,7 +28,7 @@ rect.selected {
   transform: translate(-50%, -50%);
 }
 
-g.error .fa-star {
+g.error svg {
   color: red;
 }
 
