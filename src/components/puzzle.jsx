@@ -4,16 +4,13 @@ import { Grid } from './grid.jsx';
 import { PlayerUI } from './playerUI.jsx';
 
 import { createCells } from '../helpers/create2DArray.js';
+import { checkCellForErrors } from '../helpers/checkCellForErrors.js';
 
 const initialCells = (props) => {
   if (props.cells) { return props.cells; }
   if (props.rows && props.cols) { return createCells(props.rows, props.cols); }
 
   throw new Error('<Puzzle> needs either props.cells or props.rows and props.cols');
-};
-
-const checkCellForErrors = (cell, allCells, constraints, puzzle) => {
-  console.log(cell);
 };
 
 export const Puzzle = (props) => {
