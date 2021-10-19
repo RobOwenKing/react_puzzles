@@ -44,5 +44,5 @@ export const puzzleToConstraints = (puzzle, rows, cols, regions, setConstraints)
     PARSE_PUZZLE[key].call(this, newConstraints, value, rows, cols, regions);
   }
 
-  //setConstraints(newConstraints);
+  setConstraints(newConstraints);
 };
