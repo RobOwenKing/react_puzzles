@@ -43,10 +43,15 @@ const parseStarBattleRegions = (constraints, rows, cols, regions) => {
   }
 };
 
+const addStarBattleNeighbourhoodCheck = (constraints, rows, cols) => {
+  constraints.push({ 'type': 'sb_neighbours', 'ids': [] });
+};
+
 const parseStarBattle = (constraints, value, rows, cols, regions) => {
   parseStarBattleRows(constraints, rows, cols);
   parseStarBattleCols(constraints, rows, cols);
   parseStarBattleRegions(constraints, rows, cols, regions);
+  addStarBattleNeighbourhoodCheck(constraints, rows, cols);
 
   console.log(constraints);
 };
