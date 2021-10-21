@@ -10,7 +10,7 @@ import { setDefaultRegions } from './helpers/setDefaultRegions.js';
 function App() {
   const rows = 6;
   const cols = 6;
-  const [puzzle, setPuzzle] = React.useState({'starbattle': 1});
+  const [puzzle, setPuzzle] = React.useState({ 'starbattle': 1, rows: rows, cols: cols });
   const [regions, setRegions] = React.useState(setDefaultRegions(rows, cols));
   const [constraints, setConstraints] = React.useState({});
 
@@ -24,7 +24,7 @@ function App() {
         <h1>Pencil Puzzles Without Pencils</h1>
       </header>
       <Puzzle
-        rows={rows} cols={cols}
+        rows={puzzle.rows} cols={puzzle.cols}
         constraints={constraints} setConstraints={setConstraints}
         puzzle={puzzle} setPuzzle={setPuzzle}
         regions={regions}

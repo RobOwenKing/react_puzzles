@@ -1,3 +1,7 @@
+const noActionNecessary = () => {
+  return;
+};
+
 const parseStarBattleRows = (constraints, rows, cols) => {
   for (let j = 0; j < rows; j += 1) {
     const rowConstraint = {
@@ -57,7 +61,9 @@ const parseStarBattle = (constraints, value, rows, cols, regions) => {
 };
 
 const PARSE_PUZZLE = {
-  'starbattle': parseStarBattle
+  'starbattle': parseStarBattle,
+  'rows': noActionNecessary,
+  'cols': noActionNecessary
 };
 
 export const puzzleToConstraints = (puzzle, rows, cols, regions, setConstraints) => {
