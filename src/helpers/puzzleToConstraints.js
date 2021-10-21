@@ -24,9 +24,29 @@ const parseStarBattleCols = (constraints, rows, cols) => {
   }
 };
 
+const parseStarBattleRegions = (constraints, rows, cols, regions) => {
+  const idsByRegion = {};
+
+  for (let j = 0; j < rows; j += 1) {
+    for (let i = 0; i < rows; i += 1) {
+      const region = regions[j][i];
+      if (idsByRegion[region]) {
+        idsByRegion[region].push(j * cols + i);
+      } else {
+        idsByRegion[region] = [j * cols + i];
+      }
+    }
+  }
+
+  for (const key in idsByRegion) {
+    constraints.push({ 'type': 'sb_house', 'ids': idsByRegion[key] });
+  }
+};
+
 const parseStarBattle = (constraints, value, rows, cols, regions) => {
   parseStarBattleRows(constraints, rows, cols);
   parseStarBattleCols(constraints, rows, cols);
+  parseStarBattleRegions(constraints, rows, cols, regions);
 
   console.log(constraints);
 };
