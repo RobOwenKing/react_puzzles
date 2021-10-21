@@ -14,12 +14,17 @@ const checkSBHouse = (constraint, index, cells, puzzle) => {
   }
 };
 
+const checkSBNeighbours = () => {
+  console.log('checkSBNeighbours');
+};
+
 const ERROR_CHECKERS = {
-  'sb_house': checkSBHouse
+  'sb_house': checkSBHouse,
+  'sb_neighbours': checkSBNeighbours
 };
 
 export const checkCellForErrors = (cell, allCells, constraints, puzzle) => {
-  constraints.filter(constraint => constraint.ids.includes(cell))
+  constraints.filter(constraint => constraint.ids.includes(cell) || constraint.ids.length === 0)
       .forEach((constraint, index) => {
         ERROR_CHECKERS[constraint.type].call(this, constraint, index, allCells, puzzle);
       })
