@@ -1,4 +1,4 @@
-const checkSBHouse = (constraint, index, _cell, cells, puzzle) => {
+const checkSBHouse = (constraint, _cell, cells, puzzle) => {
   let count = 0;
 
   constraint.ids.forEach((id) => {
@@ -6,25 +6,25 @@ const checkSBHouse = (constraint, index, _cell, cells, puzzle) => {
   });
 
   if (count > puzzle.starbattle) {
-    constraint.ids.forEach((id) => { cells[id].errors.push(index); })
+    constraint.ids.forEach((id) => { cells[id].errors.push(constraint.id); })
   } else {
     constraint.ids.forEach((id) => {
-      cells[id].errors = cells[id].errors.filter(num => num !== index);
+      cells[id].errors = cells[id].errors.filter(num => num !== constraint.id);
     })
   }
 };
 
-const checkSBNeighbours = (_constraint, index, cell, cells, puzzle) => {
+const checkSBNeighbours = (constraint, cell, cells, puzzle) => {
   const cols = puzzle.cols;
   const neighbours = [cell-(cols+1), cell-cols, cell-(cols-1), cell-1, cell+1, cell+(cols-1), cell+cols, cell+(cols+1)];
 
   console.log(neighbours);
 
   if (cells[cell].entry !== 'star') {
-    cells[cell].errors.filter(num => num !== index);
+    cells[cell].errors.filter(num => num !== constraint.id);
     neighbours.forEach((neighbour) => {
       if (cells[neighbour] && cells[neighbour].entry === 'star') {
-        checkSBNeighbours(_constraint, index, neighbour, cells, puzzle);
+        checkSBNeighbours(constraint, neighbour, cells, puzzle);
       }
     })
   } else {
@@ -32,13 +32,13 @@ const checkSBNeighbours = (_constraint, index, cell, cells, puzzle) => {
 
     neighbours.forEach((neighbour) => {
       if (cells[neighbour] && cells[neighbour].entry === 'star') {
-        cells[cell].errors.push(index);
-        cells[neighbour].errors.push(index);
+        cells[cell].errors.push(constraint.id);
+        cells[neighbour].errors.push(constraint.id);
         errorCount += 1;
       }
     })
 
-    if (errorCount === 0) { cells[cell].errors.filter(num => num !== index); }
+    if (errorCount === 0) { cells[cell].errors.filter(num => num !== constraint.id); }
   }
 };
 
@@ -49,7 +49,7 @@ const ERROR_CHECKERS = {
 
 export const checkCellForErrors = (cell, allCells, constraints, puzzle) => {
   constraints.filter(constraint => constraint.ids.includes(cell) || constraint.ids.length === 0)
-      .forEach((constraint, index) => {
-        ERROR_CHECKERS[constraint.type].call(this, constraint, index, cell, allCells, puzzle);
+      .forEach((constraint) => {
+        ERROR_CHECKERS[constraint.type].call(this, constraint, cell, allCells, puzzle);
       })
 };
