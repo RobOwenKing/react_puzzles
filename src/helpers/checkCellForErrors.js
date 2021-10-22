@@ -18,10 +18,8 @@ const checkSBNeighbours = (constraint, cell, cells, puzzle) => {
   const cols = puzzle.cols;
   const neighbours = [cell-(cols+1), cell-cols, cell-(cols-1), cell-1, cell+1, cell+(cols-1), cell+cols, cell+(cols+1)];
 
-  console.log(neighbours);
-
   if (cells[cell].entry !== 'star') {
-    cells[cell].errors.filter(num => num !== constraint.id);
+    cells[cell].errors = cells[cell].errors.filter(num => num !== constraint.id);
     neighbours.forEach((neighbour) => {
       if (cells[neighbour] && cells[neighbour].entry === 'star') {
         checkSBNeighbours(constraint, neighbour, cells, puzzle);
@@ -38,7 +36,9 @@ const checkSBNeighbours = (constraint, cell, cells, puzzle) => {
       }
     })
 
-    if (errorCount === 0) { cells[cell].errors.filter(num => num !== constraint.id); }
+    if (errorCount === 0) {
+      cells[cell].errors = cells[cell].errors.filter(num => num !== constraint.id);
+    }
   }
 };
 
