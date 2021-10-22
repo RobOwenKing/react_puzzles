@@ -14,7 +14,7 @@ export const Cell = ({ i, j, id, contents, cellSize, mouseDownHandler, mouseOver
   }
 
   return (
-    <g className={contents.errors.length > 0 && 'error'}>
+    <g className={contents.errors.length > 0 ? 'error' : undefined}>
       {contents?.entry === 'star' &&
         (<Star
           x={(i+0.5) * cellSize} y={(j+0.5) * cellSize}
