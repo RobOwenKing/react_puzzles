@@ -13,9 +13,10 @@ function App() {
   const [puzzle, setPuzzle] = React.useState({ 'starbattle': 1, rows: rows, cols: cols });
   const [regions, setRegions] = React.useState(setDefaultRegions(rows, cols));
   const [constraints, setConstraints] = React.useState({});
+  const constraintCount = React.useRef(0);
 
   React.useEffect(() => {
-    puzzleToConstraints(puzzle, rows, cols, regions, setConstraints);
+    puzzleToConstraints(puzzle, rows, cols, regions, setConstraints, constraintCount);
   }, [puzzle, regions]);
 
   return (
