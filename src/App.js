@@ -4,9 +4,20 @@ import React from 'react';
 
 import { Puzzle } from './components/puzzle.jsx';
 
+import { puzzleToConstraints } from './helpers/puzzleToConstraints.js';
+import { setDefaultRegions } from './helpers/setDefaultRegions.js';
+
 function App() {
-  const [constraints, setConstraints] = React.useState({regions: 'sb'});
-  const [regions, setRegions] = React.useState([]);
+  const rows = 6;
+  const cols = 6;
+  const [puzzle, setPuzzle] = React.useState({ 'starbattle': 2, rows: rows, cols: cols });
+  const [regions, setRegions] = React.useState(setDefaultRegions(rows, cols));
+  const [constraints, setConstraints] = React.useState({});
+  const constraintCount = React.useRef(0);
+
+  React.useEffect(() => {
+    puzzleToConstraints(puzzle, rows, cols, regions, setConstraints, constraintCount);
+  }, [puzzle, regions]);
 
   return (
     <div>
@@ -14,9 +25,10 @@ function App() {
         <h1>Pencil Puzzles Without Pencils</h1>
       </header>
       <Puzzle
-        rows={6} cols={6}
+        rows={puzzle.rows} cols={puzzle.cols}
         constraints={constraints} setConstraints={setConstraints}
-        regions={regions} setRegions={setRegions}
+        puzzle={puzzle} setPuzzle={setPuzzle}
+        regions={regions}
       />
     </div>
   );
