@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { CellCentre } from './CellCentre.jsx';
 import { CellEntry } from './CellEntry.jsx';
 
 export const Cell = ({ i, j, id, contents, cellSize, mouseDownHandler, mouseOverHandler, selected }) => {
@@ -19,6 +20,11 @@ export const Cell = ({ i, j, id, contents, cellSize, mouseDownHandler, mouseOver
         (<CellEntry
             entry={contents.entry}
             errors={contents.errors.length}
+            x={(i+0.5) * cellSize} y={(j+0.5) * cellSize}
+            cellSize={cellSize} />)}
+      {contents?.centres?.length > 0 &&
+        (<CellCentre
+            centres={contents.centres}
             x={(i+0.5) * cellSize} y={(j+0.5) * cellSize}
             cellSize={cellSize} />)}
       {selected &&
