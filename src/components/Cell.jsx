@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { CellEntry } from './cell_entry.jsx';
+import { CellEntry } from './CellEntry.jsx';
 
 export const Cell = ({ i, j, id, contents, cellSize, mouseDownHandler, mouseOverHandler, selected }) => {
   const handleMouseDown = (event) => {

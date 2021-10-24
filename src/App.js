@@ -2,7 +2,7 @@ import './App.css';
 
 import React from 'react';
 
-import { Puzzle } from './components/puzzle.jsx';
+import { Puzzle } from './components/Puzzle.jsx';
 
 import { puzzleToConstraints } from './helpers/puzzleToConstraints.js';
 import { setDefaultRegions } from './helpers/setDefaultRegions.js';
