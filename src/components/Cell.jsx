@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { CellCentre } from './CellCentre.jsx';
 import { CellEntry } from './CellEntry.jsx';
 
 export const Cell = ({ i, j, id, contents, cellSize, mouseDownHandler, mouseOverHandler, selected }) => {
@@ -13,14 +14,26 @@ export const Cell = ({ i, j, id, contents, cellSize, mouseDownHandler, mouseOver
     mouseOverHandler(id);
   }
 
+  const formatContents = () => {
+    if (contents?.entry?.length > 0) {
+      return (<CellEntry
+                entry={contents.entry}
+                errors={contents.errors.length}
+                x={(i+0.5) * cellSize} y={(j+0.5) * cellSize}
+                cellSize={cellSize} />);
+    } else {
+      if (contents?.centres?.length > 0) {
+        return (<CellCentre
+            centres={contents.centres}
+            x={(i+0.5) * cellSize} y={(j+0.5) * cellSize}
+            cellSize={cellSize} />);
+      }
+    }
+  }
+
   return (
     <g>
-      {contents?.entry?.length > 0 &&
-        (<CellEntry
-            entry={contents.entry}
-            errors={contents.errors.length}
-            x={(i+0.5) * cellSize} y={(j+0.5) * cellSize}
-            cellSize={cellSize} />)}
+      {formatContents()}
       {selected &&
           (<rect
               x={(i * cellSize) + 3} y={(j * cellSize) + 3}
