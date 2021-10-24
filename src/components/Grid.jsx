@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { Cell } from './cell.jsx';
-import { Regions } from './regions.jsx';
+import { Cell } from './Cell.jsx';
+import { Regions } from './Regions.jsx';
 
 const setCellAsSelected = (id, selecteds, setSelecteds) => {
   setSelecteds([id]);

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { Grid } from './grid.jsx';
-import { PlayerUI } from './playerUI.jsx';
+import { Grid } from './Grid.jsx';
+import { PlayerUI } from './PlayerUI.jsx';
 
 import { createCells } from '../helpers/create2DArray.js';
 import { checkCellForErrors } from '../helpers/checkCellForErrors.js';
