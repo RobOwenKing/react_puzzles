@@ -20,7 +20,7 @@ export const Cell = ({ i, j, id, contents, cellSize, mouseDownHandler, mouseOver
             entry={contents.entry}
             errors={contents.errors.length}
             x={(i+0.5) * cellSize} y={(j+0.5) * cellSize}
-            width={cellSize * 0.66} height={cellSize * 0.66} />)}
+            cellSize={cellSize} />)}
       {selected &&
           (<rect
               x={(i * cellSize) + 3} y={(j * cellSize) + 3}
