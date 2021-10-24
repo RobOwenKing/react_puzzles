@@ -4,7 +4,8 @@ import { useEventListener } from '../hooks/useEventListener.js';
 
 const INPUT_TO_ENTRY = {
   '1': {'entry': 'star'},
-  '2': {'centres': 'star'}
+  '2': {'centres': 'star'},
+  '3': {'entry': 'dot'}
 };
 
 const updateCellEntry = (cells, id, newEntry) => {
