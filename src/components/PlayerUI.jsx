@@ -45,6 +45,17 @@ const calculateSelectedCell = (key, selecteds, rows, cols) => {
 };
 
 export const PlayerUI = ({ selecteds, setSelecteds, cells, setCells, rows, cols, checkErrors }) => {
+  const handleEntryKey = (key) => {
+    const newCells = [...cells];
+    const newEntry = INPUT_TO_ENTRY[key];
+
+    selecteds.forEach((id) => {
+      updateCellEntry(newCells, id, newEntry);
+    });
+    checkErrors(newCells, selecteds);
+    setCells(newCells);
+  };
+
   const handleArrow = (e, key) => {
     let newSelecteds = [...selecteds];
     const newID = calculateSelectedCell(key, selecteds, rows, cols);
@@ -61,20 +72,10 @@ export const PlayerUI = ({ selecteds, setSelecteds, cells, setCells, rows, cols,
   const inputHandler = (e) => {
     e.preventDefault();
     const key = e.key;
-    console.log(key);
 
     if (key in INPUT_TO_ENTRY) {
-      const newCells = [...cells];
-      const newEntry = INPUT_TO_ENTRY[key];
-
-      selecteds.forEach((id) => {
-        updateCellEntry(newCells, id, newEntry);
-      });
-      checkErrors(newCells, selecteds);
-      setCells(newCells);
-    }
-
-    if (['ArrowUp', 'ArrowLeft', 'ArrowDown', 'ArrowRight'].includes(key)) {
+      handleEntryKey(key);
+    } else if (['ArrowUp', 'ArrowLeft', 'ArrowDown', 'ArrowRight'].includes(key)) {
       handleArrow(e, key);
     }
   };
