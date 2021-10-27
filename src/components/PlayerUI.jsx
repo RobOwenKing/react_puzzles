@@ -55,6 +55,7 @@ export const PlayerUI = ({ selecteds, setSelecteds, cells, setCells, rows, cols,
   };
 
   const inputHandler = (e) => {
+    e.preventDefault();
     const key = e.key;
     console.log(key);
 
