@@ -1,3 +1,5 @@
+import { idToIJ } from './idToIJ.js';
+
 const checkSBHouse = (constraint, _cell, cells, puzzle) => {
   let count = 0;
 
@@ -16,7 +18,11 @@ const checkSBHouse = (constraint, _cell, cells, puzzle) => {
 
 const checkSBNeighbours = (constraint, cell, cells, puzzle) => {
   const cols = puzzle.cols;
-  const neighbours = [cell-(cols+1), cell-cols, cell-(cols-1), cell-1, cell+1, cell+(cols-1), cell+cols, cell+(cols+1)];
+  const neighbours = [cell-cols, cell+cols];
+
+  const [i, j] = idToIJ(cell, puzzle.cols);
+  if (i !== 0) { neighbours.push(cell-(cols+1), cell-1, cell+(cols-1)); }
+  if (i !== puzzle.cols - 1) { neighbours.push(cell-(cols-1), cell+1, cell+(cols+1)); }
 
   if (cells[cell].entry !== 'star') {
     cells[cell].errors = cells[cell].errors.filter(num => num !== constraint.id);
