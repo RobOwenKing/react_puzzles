@@ -33,9 +33,9 @@ export const Puzzle = (props) => {
         regions={props.regions}
       />
       <PlayerUI
-        selecteds={selecteds}
+        selecteds={selecteds} setSelecteds={setSelecteds}
         cells={cells} setCells={setCells}
-        cols={props.cols}
+        rows={props.rows} cols={props.cols}
         checkErrors={checkErrors}
       />
     </div>

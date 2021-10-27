@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { idToIJ } from '../helpers/idToIJ.js';
+
 import { useEventListener } from '../hooks/useEventListener.js';
 
 const INPUT_TO_ENTRY = {
@@ -24,7 +26,30 @@ const updateCellEntry = (cells, id, newEntry) => {
   }
 };
 
-export const PlayerUI = ({ selecteds, cells, setCells, cols, checkErrors }) => {
+const calculateSelectedCell = (key, selecteds, rows, cols) => {
+  const lastAddedID = selecteds[selecteds.length - 1];
+  let idToAdd = lastAddedID;
+  const [i, j] = idToIJ(lastAddedID, cols);
+
+  if (key === 'ArrowUp') {
+    idToAdd += j === 0 ? (rows-1) * cols : -cols;
+  } else if (key === 'ArrowDown') {
+    idToAdd += j === rows-1 ? (1-rows) * cols : cols;
+  }
+
+  return idToAdd;
+};
+
+export const PlayerUI = ({ selecteds, setSelecteds, cells, setCells, rows, cols, checkErrors }) => {
+  const handleArrow = (key) => {
+    const newSelecteds = [...selecteds];
+
+    const newID = calculateSelectedCell(key, selecteds, rows, cols);
+    newSelecteds.push(newID)
+
+    setSelecteds(newSelecteds);
+  };
+
   const inputHandler = (key) => {
     console.log(key);
 
@@ -37,6 +62,10 @@ export const PlayerUI = ({ selecteds, cells, setCells, cols, checkErrors }) => {
       });
       checkErrors(newCells, selecteds);
       setCells(newCells);
+    }
+
+    if (['ArrowUp', 'ArrowLeft', 'ArrowDown', 'ArrowRight'].includes(key)) {
+      handleArrow(key);
     }
   };
 
