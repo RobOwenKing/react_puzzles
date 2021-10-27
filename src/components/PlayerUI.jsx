@@ -35,6 +35,10 @@ const calculateSelectedCell = (key, selecteds, rows, cols) => {
     idToAdd += j === 0 ? (rows-1) * cols : -cols;
   } else if (key === 'ArrowDown') {
     idToAdd += j === rows-1 ? (1-rows) * cols : cols;
+  } else if (key === 'ArrowLeft') {
+    idToAdd += i === 0 ? cols-1 : -1;
+  } else if (key === 'ArrowRight') {
+    idToAdd += i === cols-1 ? 1-cols : 1;
   }
 
   return idToAdd;
@@ -50,7 +54,8 @@ export const PlayerUI = ({ selecteds, setSelecteds, cells, setCells, rows, cols,
     setSelecteds(newSelecteds);
   };
 
-  const inputHandler = (key) => {
+  const inputHandler = (e) => {
+    const key = e.key;
     console.log(key);
 
     if (key in INPUT_TO_ENTRY) {
@@ -69,7 +74,7 @@ export const PlayerUI = ({ selecteds, setSelecteds, cells, setCells, rows, cols,
     }
   };
 
-  useEventListener('keydown', (e) => { inputHandler(e.key) });
+  useEventListener('keydown', (e) => { inputHandler(e) });
 
   return (
     <svg></svg>
