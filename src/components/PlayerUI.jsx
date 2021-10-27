@@ -45,11 +45,15 @@ const calculateSelectedCell = (key, selecteds, rows, cols) => {
 };
 
 export const PlayerUI = ({ selecteds, setSelecteds, cells, setCells, rows, cols, checkErrors }) => {
-  const handleArrow = (key) => {
-    const newSelecteds = [...selecteds];
-
+  const handleArrow = (e, key) => {
+    let newSelecteds = [...selecteds];
     const newID = calculateSelectedCell(key, selecteds, rows, cols);
-    newSelecteds.push(newID)
+
+    if (e.ctrlKey || e.shiftKey) {
+      newSelecteds.push(newID);
+    } else {
+      newSelecteds = [newID];
+    }
 
     setSelecteds(newSelecteds);
   };
@@ -71,7 +75,7 @@ export const PlayerUI = ({ selecteds, setSelecteds, cells, setCells, rows, cols,
     }
 
     if (['ArrowUp', 'ArrowLeft', 'ArrowDown', 'ArrowRight'].includes(key)) {
-      handleArrow(key);
+      handleArrow(e, key);
     }
   };
 
