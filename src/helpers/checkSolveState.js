@@ -21,7 +21,7 @@ const CHECK_FUNCTIONS = {
 const isPuzzleSolved = (cells, puzzle) => {
   if (cells.some((cell) => {return cell.errors.length > 0})) { return false; }
 
-  for (const [key, value] of Object.entries(puzzle)) {
+  for (const key of Object.keys(puzzle)) {
     if (CHECK_FUNCTIONS[key] && !CHECK_FUNCTIONS[key].call(this, cells, puzzle)) { return false; }
   }
 
