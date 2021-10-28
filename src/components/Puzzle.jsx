@@ -13,6 +13,16 @@ const initialCells = (props) => {
   throw new Error('<Puzzle> needs either props.cells or props.rows and props.cols');
 };
 
+const isPuzzleSolved = (cells) => {
+  return false;
+};
+
+const checkSolveState = (cells) => {
+  if (isPuzzleSolved(cells)) {
+    console.log('solved');
+  }
+};
+
 export const Puzzle = (props) => {
   const [cells, setCells] = React.useState(initialCells(props));
   const [selecteds, setSelecteds] = React.useState([]);
@@ -22,6 +32,10 @@ export const Puzzle = (props) => {
       checkCellForErrors(cell, allCells, props.constraints, props.puzzle);
     });
   };
+
+  React.useEffect(() => {
+    checkSolveState(cells);
+  }, [cells]);
 
   return (
     <div id="puzzle">
