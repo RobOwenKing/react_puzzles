@@ -3,24 +3,15 @@ import React from 'react';
 import { Grid } from './Grid.jsx';
 import { PlayerUI } from './PlayerUI.jsx';
 
-import { createCells } from '../helpers/create2DArray.js';
 import { checkCellForErrors } from '../helpers/checkCellForErrors.js';
+import { checkSolveState } from '../helpers/checkSolveState.js';
+import { createCells } from '../helpers/create2DArray.js';
 
 const initialCells = (props) => {
   if (props.cells) { return props.cells; }
   if (props.rows && props.cols) { return createCells(props.rows, props.cols); }
 
   throw new Error('<Puzzle> needs either props.cells or props.rows and props.cols');
-};
-
-const isPuzzleSolved = (cells) => {
-  return false;
-};
-
-const checkSolveState = (cells) => {
-  if (isPuzzleSolved(cells)) {
-    console.log('solved');
-  }
 };
 
 export const Puzzle = (props) => {
@@ -34,8 +25,8 @@ export const Puzzle = (props) => {
   };
 
   React.useEffect(() => {
-    checkSolveState(cells);
-  }, [cells]);
+    checkSolveState(cells, props.puzzle);
+  }, [cells, props.puzzle]);
 
   return (
     <div id="puzzle">
