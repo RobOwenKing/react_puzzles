@@ -3,8 +3,9 @@ import React from 'react';
 import { Grid } from './Grid.jsx';
 import { PlayerUI } from './PlayerUI.jsx';
 
-import { createCells } from '../helpers/create2DArray.js';
 import { checkCellForErrors } from '../helpers/checkCellForErrors.js';
+import { checkSolveState } from '../helpers/checkSolveState.js';
+import { createCells } from '../helpers/create2DArray.js';
 
 const initialCells = (props) => {
   if (props.cells) { return props.cells; }
@@ -22,6 +23,10 @@ export const Puzzle = (props) => {
       checkCellForErrors(cell, allCells, props.constraints, props.puzzle);
     });
   };
+
+  React.useEffect(() => {
+    checkSolveState(cells, props.puzzle);
+  }, [cells, props.puzzle]);
 
   return (
     <div id="puzzle">
