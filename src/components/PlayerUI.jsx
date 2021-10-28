@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { idToIJ } from '../helpers/idToIJ.js';
+
 import { useEventListener } from '../hooks/useEventListener.js';
 
 const INPUT_TO_ENTRY = {
@@ -24,23 +26,61 @@ const updateCellEntry = (cells, id, newEntry) => {
   }
 };
 
-export const PlayerUI = ({ selecteds, cells, setCells, cols, checkErrors }) => {
-  const inputHandler = (key) => {
-    console.log(key);
+const calculateSelectedCell = (key, selecteds, rows, cols) => {
+  const lastAddedID = selecteds[selecteds.length - 1];
+  let idToAdd = lastAddedID;
+  const [i, j] = idToIJ(lastAddedID, cols);
+
+  if (key === 'ArrowUp') {
+    idToAdd += j === 0 ? (rows-1) * cols : -cols;
+  } else if (key === 'ArrowDown') {
+    idToAdd += j === rows-1 ? (1-rows) * cols : cols;
+  } else if (key === 'ArrowLeft') {
+    idToAdd += i === 0 ? cols-1 : -1;
+  } else if (key === 'ArrowRight') {
+    idToAdd += i === cols-1 ? 1-cols : 1;
+  }
+
+  return idToAdd;
+};
+
+export const PlayerUI = ({ selecteds, setSelecteds, cells, setCells, rows, cols, checkErrors }) => {
+  const handleEntryKey = (key) => {
+    const newCells = [...cells];
+    const newEntry = INPUT_TO_ENTRY[key];
+
+    selecteds.forEach((id) => {
+      updateCellEntry(newCells, id, newEntry);
+    });
+    checkErrors(newCells, selecteds);
+    setCells(newCells);
+  };
+
+  const handleArrow = (e, key) => {
+    let newSelecteds = [...selecteds];
+    const newID = calculateSelectedCell(key, selecteds, rows, cols);
+
+    if (e.ctrlKey || e.shiftKey) {
+      newSelecteds.push(newID);
+    } else {
+      newSelecteds = [newID];
+    }
+
+    setSelecteds(newSelecteds);
+  };
+
+  const inputHandler = (e) => {
+    e.preventDefault();
+    const key = e.key;
 
     if (key in INPUT_TO_ENTRY) {
-      const newCells = [...cells];
-      const newEntry = INPUT_TO_ENTRY[key];
-
-      selecteds.forEach((id) => {
-        updateCellEntry(newCells, id, newEntry);
-      });
-      checkErrors(newCells, selecteds);
-      setCells(newCells);
+      handleEntryKey(key);
+    } else if (['ArrowUp', 'ArrowLeft', 'ArrowDown', 'ArrowRight'].includes(key)) {
+      handleArrow(e, key);
     }
   };
 
-  useEventListener('keydown', (e) => { inputHandler(e.key) });
+  useEventListener('keydown', (e) => { inputHandler(e) });
 
   return (
     <svg></svg>
