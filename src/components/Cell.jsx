@@ -18,7 +18,7 @@ export const Cell = ({ i, j, id, contents, cellSize, mouseDownHandler, mouseOver
     if (contents?.entry?.length > 0) {
       return (<CellEntry
                 entry={contents.entry}
-                errors={contents.errors.length}
+                isError={contents?.errors && contents.errors?.length > 0}
                 x={(i+0.5) * cellSize} y={(j+0.5) * cellSize}
                 cellSize={cellSize} />);
     } else {

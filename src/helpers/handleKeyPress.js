@@ -51,11 +51,11 @@ export const handleKeyPress = (key, cells, selecteds, checkErrors, setCells) => 
   setCells(newCells);
 };
 
-export const handleArrowPress = (e, key, selecteds, setSelecteds, rows, cols) => {
+export const handleArrowPress = (key, ctrl, shft, selecteds, setSelecteds, rows, cols) => {
   let newSelecteds = [...selecteds];
   const newID = calculateSelectedCell(key, selecteds, rows, cols);
 
-  if (e.ctrlKey || e.shiftKey) {
+  if (ctrl || shft) {
     newSelecteds.push(newID);
   } else {
     newSelecteds = [newID];
