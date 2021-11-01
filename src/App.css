@@ -28,7 +28,7 @@ rect {
   rx: 10;
 }
 
-rect.selected {
+#grid rect.selected {
   stroke-width: 5;
   stroke: #3D8116;
 }
