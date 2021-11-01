@@ -4,10 +4,22 @@ svg#grid {
   width: auto;
 }
 
+svg#input-panel {
+  width: 200px;
+}
+
 rect {
   fill: transparent;
-  stroke-width: 1;
   stroke: black;
+}
+
+#grid rect {
+  stroke-width: 1;
+}
+
+#input-panel rect {
+  stroke-width: 1;
+  rx: 10;
 }
 
 rect.selected {
