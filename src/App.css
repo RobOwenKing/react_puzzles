@@ -1,3 +1,9 @@
+#puzzle {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 svg#grid {
   /* TODO: Responsive width/height */
   height: 80vh;
