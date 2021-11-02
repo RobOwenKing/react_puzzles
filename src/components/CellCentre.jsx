@@ -12,12 +12,12 @@ export const CellCentre = ({ centres, x, y, cellSize }) => {
   }
 
   return (
-    <g>
+    <>
       <CellContents
           contents={contents()}
           x={x} y={y}
           size={cellSize * 0.2}
           />
-    </g>
+    </>
   );
 };

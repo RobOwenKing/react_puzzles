@@ -32,7 +32,7 @@ export const Cell = ({ i, j, id, contents, cellSize, mouseDownHandler, mouseOver
   }
 
   return (
-    <g>
+    <>
       {formatContents()}
       {selected &&
           (<rect
@@ -44,6 +44,6 @@ export const Cell = ({ i, j, id, contents, cellSize, mouseDownHandler, mouseOver
           width={cellSize} height={cellSize}
           onMouseDown={handleMouseDown}
           onMouseOver={handleMouseOver} />
-    </g>
+    </>
   );
 };
