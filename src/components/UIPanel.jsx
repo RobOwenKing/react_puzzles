@@ -9,12 +9,15 @@ export const UIPanel = ({ inputHandler, inputMap }) => {
   const handleMouseOver = () => { return; }
 
   const cellOrRect = (input, index) => {
+    const i = index % 3;
+    const j = Math.floor(index / 3);
+
     if (inputMap[input]) {
       return (
         <Cell
           key={input} id={input}
           contents={inputMap[input]}
-          i={index % 3} j={Math.floor(index / 3)} cellSize={100}
+          i={i} j={j} cellSize={100}
           mouseDownHandler={handleMouseDown}
           mouseOverHandler={handleMouseOver}
           selected={false}
@@ -24,7 +27,7 @@ export const UIPanel = ({ inputHandler, inputMap }) => {
       return (
         <rect
           key={input} className="not-cell"
-          x={(index % 3) * 100} y={Math.floor(index / 3) * 100}
+          x={i * 100} y={j * 100}
           width={100} height={100}
         />
       )
