@@ -16,7 +16,7 @@ export const UIPanel = ({ inputHandler, inputMap }) => {
       return (
         <Cell
           key={input} id={input}
-          contents={inputMap[input]}
+          contents={inputMap[input]} className="cell-ip"
           i={i} j={j} cellSize={100}
           mouseDownHandler={handleMouseDown}
           mouseOverHandler={handleMouseOver}

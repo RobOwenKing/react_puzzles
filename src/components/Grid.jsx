@@ -52,7 +52,7 @@ export const Grid = ({ rows, cols, cells, selecteds, setSelecteds, constraints, 
           return (
             <Cell
               key={cell.id} id={cell.id}
-              contents={cell}
+              contents={cell} className="cell"
               i={cell.i} j={cell.j} cellSize={cellSize}
               mouseDownHandler={handleCellMouseDown}
               mouseOverHandler={handleCellMouseOver}

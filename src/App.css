@@ -21,15 +21,17 @@ svg#input-panel {
 rect {
   fill: transparent;
   stroke: black;
-}
-
-#grid rect {
   stroke-width: 1;
 }
 
 #input-panel rect {
-  stroke-width: 1;
   rx: 10;
+}
+
+.cell-ip:hover {
+  stroke-width: 8;
+  stroke: #3D8116;
+
 }
 
 #grid rect.selected {
