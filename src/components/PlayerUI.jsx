@@ -21,15 +21,9 @@ export const PlayerUI = ({ selecteds, setSelecteds, cells, setCells, rows, cols,
   });
 
   return (
-    <svg
-      version="1.1" xmlns="http://www.w3.org/2000/svg"
-      id="input-panel" role="img"
-      viewBox="-16 -16 332 332"
-    >
-      <UIPanel
-        inputHandler={inputHandler}
-        inputMap={INPUT_TO_ENTRY}
-      />
-    </svg>
+    <UIPanel
+      inputHandler={inputHandler}
+      inputMap={INPUT_TO_ENTRY}
+    />
   );
 };

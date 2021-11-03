@@ -35,8 +35,14 @@ export const UIPanel = ({ inputHandler, inputMap }) => {
   }
 
   return (
-    <g id="inputs">
-      {inputs.map((input, index) => { return cellOrRect(input, index); })}
-    </g>
+    <svg
+      version="1.1" xmlns="http://www.w3.org/2000/svg"
+      id="input-panel" role="img"
+      viewBox="-16 -16 332 332"
+    >
+      <g id="inputs">
+        {inputs.map((input, index) => { return cellOrRect(input, index); })}
+      </g>
+    </svg>
   );
 };
