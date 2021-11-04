@@ -1,12 +1,13 @@
 import React from 'react';
 
+import { Rules } from './Rules.jsx';
 import { UIPanel } from './UIPanel.jsx';
 
 import { INPUT_TO_ENTRY, handleKeyPress, handleArrowPress } from '../helpers/handleKeyPress.js';
 
 import { useEventListener } from '../hooks/useEventListener.js';
 
-export const PlayerUI = ({ selecteds, setSelecteds, cells, setCells, rows, cols, checkErrors }) => {
+export const PlayerUI = ({ puzzle, selecteds, setSelecteds, cells, setCells, rows, cols, checkErrors }) => {
   const inputHandler = (key, ctrl, shft) => {
     if (key in INPUT_TO_ENTRY) {
       handleKeyPress(key, cells, selecteds, checkErrors, setCells);
@@ -22,10 +23,7 @@ export const PlayerUI = ({ selecteds, setSelecteds, cells, setCells, rows, cols,
 
   return (
     <div>
-      <details>
-        <summary>Rules</summary>
-        <p>Standard Star Battle rules apply.</p>
-      </details>
+      <Rules puzzle={puzzle} />
       <UIPanel
         inputHandler={inputHandler}
         inputMap={INPUT_TO_ENTRY}
