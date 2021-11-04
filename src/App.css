@@ -4,7 +4,7 @@
 
 #puzzle {
   display: flex;
-  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
 }
 
@@ -35,7 +35,6 @@ rect {
 .cell-ip:hover {
   stroke-width: 8;
   stroke: var(--colour-highlight);
-
 }
 
 #grid rect.selected {

@@ -21,9 +21,15 @@ export const PlayerUI = ({ selecteds, setSelecteds, cells, setCells, rows, cols,
   });
 
   return (
-    <UIPanel
-      inputHandler={inputHandler}
-      inputMap={INPUT_TO_ENTRY}
-    />
+    <div>
+      <details>
+        <summary>Rules</summary>
+        <p>Standard Star Battle rules apply.</p>
+      </details>
+      <UIPanel
+        inputHandler={inputHandler}
+        inputMap={INPUT_TO_ENTRY}
+      />
+    </div>
   );
 };
