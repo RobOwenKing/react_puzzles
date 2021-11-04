@@ -66,3 +66,7 @@ g.error svg {
 .fa-star {
   color: #F5B700;
 }
+
+summary:hover {
+  cursor: pointer;
+}
