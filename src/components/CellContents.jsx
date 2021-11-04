@@ -4,7 +4,7 @@ import { ReactComponent as Star } from '../svg/star-solid.svg';
 
 export const CellContents = ({ contents, x, y, size }) => {
   return (
-    <g>
+    <>
       {contents === 'star' &&
         (<Star
             x={x} y={y}
@@ -14,6 +14,6 @@ export const CellContents = ({ contents, x, y, size }) => {
         (<circle
             cx={x} cy={y} r={size * 0.2}
             />)}
-    </g>
+    </>
   );
 };

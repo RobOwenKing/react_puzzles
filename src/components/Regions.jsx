@@ -42,10 +42,10 @@ export const Regions = ({ rows, cols, regions, cellSize }) => {
   };
 
   return (
-    <g>
+    <>
       {regions.length > 0 && drawCols()}
       {regions.length > 0 && drawRows()}
-    </g>
+    </>
   );
 };
 

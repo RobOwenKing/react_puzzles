@@ -1,18 +1,49 @@
+:root {
+  --colour-highlight: #3D8116;
+}
+
+#puzzle {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
 svg#grid {
   /* TODO: Responsive width/height */
   height: 80vh;
   width: auto;
 }
 
-rect {
-  fill: transparent;
-  stroke-width: 1;
-  stroke: black;
+svg#input-panel {
+  width: 200px;
 }
 
-rect.selected {
+#cells, #inputs {
+  cursor: pointer;
+}
+
+rect {
+  fill: transparent;
+  stroke: black;
+  stroke-width: 1;
+}
+
+#input-panel rect {
+  rx: 10;
+}
+
+.cell-ip:hover {
+  stroke-width: 8;
+  stroke: var(--colour-highlight);
+}
+
+#grid rect.selected {
   stroke-width: 5;
-  stroke: #3D8116;
+  stroke: var(--colour-highlight);
+}
+
+rect.not-cell {
+  cursor: default;
 }
 
 .region {
@@ -34,4 +65,8 @@ g.error svg {
 
 .fa-star {
   color: #F5B700;
+}
+
+summary:hover {
+  cursor: pointer;
 }

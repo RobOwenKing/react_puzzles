@@ -3,7 +3,7 @@ import React from 'react';
 import { CellCentre } from './CellCentre.jsx';
 import { CellEntry } from './CellEntry.jsx';
 
-export const Cell = ({ i, j, id, contents, cellSize, mouseDownHandler, mouseOverHandler, selected }) => {
+export const Cell = ({ i, j, id, contents, className, cellSize, mouseDownHandler, mouseOverHandler, selected }) => {
   const handleMouseDown = (event) => {
     event.preventDefault();
     mouseDownHandler(event, id);
@@ -18,7 +18,7 @@ export const Cell = ({ i, j, id, contents, cellSize, mouseDownHandler, mouseOver
     if (contents?.entry?.length > 0) {
       return (<CellEntry
                 entry={contents.entry}
-                errors={contents.errors.length}
+                isError={contents?.errors && contents.errors?.length > 0}
                 x={(i+0.5) * cellSize} y={(j+0.5) * cellSize}
                 cellSize={cellSize} />);
     } else {
@@ -32,7 +32,7 @@ export const Cell = ({ i, j, id, contents, cellSize, mouseDownHandler, mouseOver
   }
 
   return (
-    <g>
+    <>
       {formatContents()}
       {selected &&
           (<rect
@@ -42,8 +42,9 @@ export const Cell = ({ i, j, id, contents, cellSize, mouseDownHandler, mouseOver
       <rect
           x={i * cellSize} y={j * cellSize}
           width={cellSize} height={cellSize}
+          className={className}
           onMouseDown={handleMouseDown}
           onMouseOver={handleMouseOver} />
-    </g>
+    </>
   );
 };
