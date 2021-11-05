@@ -11,6 +11,16 @@ const pushCellToSelecteds = (id, selecteds, setSelecteds) => {
   setSelecteds([...selecteds, id]);
 };
 
+const addDeselectListener = (setSelecteds) => {
+  const puzzle = document.getElementById('puzzle')
+  puzzle.addEventListener('click', (event) => {
+      event.preventDefault();
+      if (event.path[0] === puzzle) {
+        setSelecteds([]);
+      }
+    })
+};
+
 export const Grid = ({ rows, cols, cells, selecteds, setSelecteds, constraints, regions, setRegions }) => {
   const [cellSize, setCellSize] = React.useState(100);
   const [multiSelect, setMultiSelect] = React.useState(false);
@@ -34,6 +44,10 @@ export const Grid = ({ rows, cols, cells, selecteds, setSelecteds, constraints, 
     event.preventDefault();
     setMultiSelect(false);
   };
+
+  React.useEffect(() => {
+    addDeselectListener(setSelecteds);
+  }, [setSelecteds]);
 
   return (
     <svg
