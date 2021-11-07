@@ -8,7 +8,7 @@ describe('Rules', () => {
       *   Should be 'button' for <summary> but that wasn't working
     */
     const { container } = render(<Rules puzzle={{}}/>);
-    expect(container.querySelector('summary')).toHaveTextContent('Rules')
+    expect(container.querySelector('summary')).toHaveTextContent('Rules');
   });
 
   test('should render a rule when used in the puzzle', () => {
@@ -24,4 +24,4 @@ describe('Rules', () => {
     render(<Rules puzzle={{ starbattle: 3 }}/>);
     expect(screen.getByRole('listitem')).toHaveTextContent('3');
   });
-})
+});
