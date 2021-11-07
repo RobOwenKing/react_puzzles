@@ -16,7 +16,7 @@ function App() {
   const constraintCount = React.useRef(0);
 
   React.useEffect(() => {
-    puzzleToConstraints(puzzle, rows, cols, regions, setConstraints, constraintCount);
+    setConstraints(puzzleToConstraints(puzzle, rows, cols, regions, constraintCount));
   }, [puzzle, regions]);
 
   return (

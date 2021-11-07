@@ -72,12 +72,12 @@ const PARSE_PUZZLE = {
   'cols': noActionNecessary
 };
 
-export const puzzleToConstraints = (puzzle, rows, cols, regions, setConstraints, constraintCount) => {
+export const puzzleToConstraints = (puzzle, rows, cols, regions, constraintCount) => {
   const newConstraints = [];
 
   for (const [key, value] of Object.entries(puzzle)) {
     PARSE_PUZZLE[key].call(this, newConstraints, constraintCount, value, rows, cols, regions);
   }
 
-  setConstraints(newConstraints);
+  return newConstraints;
 };
