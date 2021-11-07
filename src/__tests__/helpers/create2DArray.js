@@ -1,4 +1,5 @@
 import { create2DArray, createCells } from '../../helpers/create2DArray.js';
+import { idToIJ } from '../../helpers/idToIJ.js';
 
 describe('create2DArray()', () => {
   it('should return an Array of Arrays of correct dimensions', () => {
@@ -22,10 +23,20 @@ describe('create2DArray()', () => {
 });
 
 describe('createCells()', () => {
-  it('should return an Array of Arrays of correct dimensions', () => {
+  it('should return an Array of correct length', () => {
     const sample = createCells(3, 4);
     expect(sample).toBeInstanceOf(Array);
-    expect(sample.length).toBe(3);
-    expect(sample.every(element => element.length === 4)).toBe(true);
+    expect(sample.length).toBe(3 * 4);
   });
+  it('should give each element the correct id', () => {
+    const sample = createCells(3, 4);
+    expect(sample.every((element, index) => element['id'] === index)).toBe(true);
+  });
+  it('should give each element i and j matching the id', () => {
+    const sample = createCells(4, 3);
+    expect(sample.every(element => {
+        const [i, j] = idToIJ(element['id'], 3);
+        return i === element['i'] && j === element['j'];
+      })).toBe(true);
+  })
 });
