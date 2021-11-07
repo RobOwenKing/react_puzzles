@@ -1,14 +1,15 @@
 import { idToIJ } from '../../helpers/idToIJ.js';
 
 describe('idToIJ()', () => {
-  test('should return an Array of length 2', () => {
-    expect(idToIJ(42, 7)).toBeInstanceOf(Array);
-    expect(idToIJ(42, 7).length).toBe(2);
+  it('should return an Array of length 2', () => {
+    const sample = idToIJ(42, 7);
+    expect(sample).toBeInstanceOf(Array);
+    expect(sample.length).toBe(2);
   });
-  test('should work for id < cols', () => {
+  it('should work for id < cols', () => {
     expect(idToIJ(3, 6)).toStrictEqual([3, 0]);
   });
-  test('should work for id > cols', () => {
+  it('should work for id > cols', () => {
     expect(idToIJ(11, 6)).toStrictEqual([5, 1]);
   });
 })
