@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { Rules } from '../components/Rules.jsx';
+import { Rules } from '../../components/Rules.jsx';
 
 describe('Rules', () => {
   test('should render a <summary> button to expand the Rules', () => {
