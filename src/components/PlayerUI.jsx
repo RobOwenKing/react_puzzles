@@ -10,9 +10,9 @@ import { useEventListener } from '../hooks/useEventListener.js';
 export const PlayerUI = ({ puzzle, selecteds, setSelecteds, cells, setCells, rows, cols, checkErrors }) => {
   const inputHandler = (key, ctrl, shft) => {
     if (key in INPUT_TO_ENTRY) {
-      handleKeyPress(key, cells, selecteds, checkErrors, setCells);
+      setCells(handleKeyPress(key, cells, selecteds, checkErrors));
     } else if (['ArrowUp', 'ArrowLeft', 'ArrowDown', 'ArrowRight'].includes(key)) {
-      handleArrowPress(key, ctrl, shft, selecteds, setSelecteds, rows, cols);
+      setSelecteds(handleArrowPress(key, ctrl, shft, selecteds, rows, cols));
     }
   };
 

@@ -40,7 +40,7 @@ const calculateSelectedCell = (key, selecteds, rows, cols) => {
   return idToAdd;
 };
 
-export const handleKeyPress = (key, cells, selecteds, checkErrors, setCells) => {
+export const handleKeyPress = (key, cells, selecteds, checkErrors) => {
   const newCells = [...cells];
   const newEntry = INPUT_TO_ENTRY[key];
 
@@ -48,10 +48,11 @@ export const handleKeyPress = (key, cells, selecteds, checkErrors, setCells) => 
     updateCellEntry(newCells, id, newEntry);
   });
   checkErrors(newCells, selecteds);
-  setCells(newCells);
+
+  return newCells;
 };
 
-export const handleArrowPress = (key, ctrl, shft, selecteds, setSelecteds, rows, cols) => {
+export const handleArrowPress = (key, ctrl, shft, selecteds, rows, cols) => {
   let newSelecteds = [...selecteds];
   const newID = calculateSelectedCell(key, selecteds, rows, cols);
 
@@ -61,5 +62,5 @@ export const handleArrowPress = (key, ctrl, shft, selecteds, setSelecteds, rows,
     newSelecteds = [newID];
   }
 
-  setSelecteds(newSelecteds);
+  return newSelecteds;
 };
