@@ -6,6 +6,7 @@ describe('create2DArray()', () => {
     const sample = create2DArray(3, 4);
     expect(sample).toBeInstanceOf(Array);
     expect(sample.length).toBe(3);
+    expect(sample.every(element => Array.isArray(element))).toBe(true);
     expect(sample.every(element => element.length === 4)).toBe(true);
   });
   it('should return an Array of Arrays of correct dimensions (given fillValue)', () => {
