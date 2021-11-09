@@ -63,7 +63,7 @@ const parseStarBattle = (constraints, count, value, rows, cols, regions) => {
   parseStarBattleRegions(constraints, count, rows, cols, regions);
   addStarBattleNeighbourhoodCheck(constraints, count, rows, cols);
 
-  console.log(constraints);
+  // console.log(constraints);
 };
 
 const PARSE_PUZZLE = {
