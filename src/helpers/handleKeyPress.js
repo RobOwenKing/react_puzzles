@@ -41,7 +41,7 @@ const calculateSelectedCell = (key, selecteds, rows, cols) => {
 };
 
 export const handleKeyPress = (key, cells, selecteds, checkErrors) => {
-  const newCells = [...cells];
+  const newCells = JSON.parse(JSON.stringify(cells));
   const newEntry = INPUT_TO_ENTRY[key];
 
   selecteds.forEach((id) => {
