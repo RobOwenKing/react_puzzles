@@ -18,7 +18,7 @@ const CHECK_FUNCTIONS = {
   'starbattle': checkSB
 };
 
-const isPuzzleSolved = (cells, puzzle) => {
+export const isPuzzleSolved = (cells, puzzle) => {
   if (cells.some((cell) => {return cell.errors.length > 0})) { return false; }
 
   for (const key of Object.keys(puzzle)) {
