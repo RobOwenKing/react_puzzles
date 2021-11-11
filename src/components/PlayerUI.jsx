@@ -3,7 +3,8 @@ import React from 'react';
 import { Rules } from './Rules.jsx';
 import { UIPanel } from './UIPanel.jsx';
 
-import { INPUT_TO_ENTRY, handleKeyPress, handleArrowPress } from '../helpers/handleKeyPress.js';
+import { handleArrowPress } from '../helpers/handleArrowPress.js';
+import { INPUT_TO_ENTRY, handleKeyPress } from '../helpers/handleKeyPress.js';
 
 import { useEventListener } from '../hooks/useEventListener.js';
 
