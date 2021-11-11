@@ -14,7 +14,6 @@ const pushCellToSelecteds = (id, selecteds, setSelecteds) => {
 const addDeselectListener = (setSelecteds) => {
   const puzzle = document.getElementById('puzzle')
   puzzle.addEventListener('click', (event) => {
-      event.preventDefault();
       if (event.path[0] === puzzle) {
         setSelecteds([]);
       }
@@ -22,7 +21,7 @@ const addDeselectListener = (setSelecteds) => {
 };
 
 export const Grid = ({ rows, cols, cells, selecteds, setSelecteds, constraints, regions, setRegions }) => {
-  const [cellSize, setCellSize] = React.useState(100);
+  const cellSize = 100;
   const [multiSelect, setMultiSelect] = React.useState(false);
 
   const handleCellMouseDown = (event, id) => {

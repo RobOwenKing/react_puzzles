@@ -20,7 +20,7 @@ const checkSBNeighbours = (constraint, cell, cells, puzzle) => {
   const cols = puzzle.cols;
   const neighbours = [cell-cols, cell+cols];
 
-  const [i, j] = idToIJ(cell, puzzle.cols);
+  const i = idToIJ(cell, puzzle.cols)[0];
   if (i !== 0) { neighbours.push(cell-(cols+1), cell-1, cell+(cols-1)); }
   if (i !== puzzle.cols - 1) { neighbours.push(cell-(cols-1), cell+1, cell+(cols+1)); }
 
