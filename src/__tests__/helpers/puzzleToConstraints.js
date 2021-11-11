@@ -1,4 +1,5 @@
 import { puzzleToConstraints } from '../../helpers/puzzleToConstraints.js';
+
 import { setDefaultRegions } from '../../helpers/setDefaultRegions.js';
 
 /**
