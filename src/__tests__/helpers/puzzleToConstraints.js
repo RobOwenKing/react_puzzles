@@ -1,6 +1,10 @@
 import { puzzleToConstraints } from '../../helpers/puzzleToConstraints.js';
 import { setDefaultRegions } from '../../helpers/setDefaultRegions.js';
 
+/**
+  * Only for high-level tests of puzzleToConstraints()
+  * Tests of specific outputs should go in ../puzzle_types or ../constraints
+*/
 describe('puzzleToConstraints()', () => {
   it('should return an Array', () => {
     const samplePuzzle = { 'starbattle': 1 };
