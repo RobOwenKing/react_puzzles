@@ -6,7 +6,12 @@ export function useCells(rows, cols) {
   const [currentCells, setCurrentCells] = useState(createCells(rows, cols));
   const undoQueue = useRef([]);
 
-  const copyOfCells = () => {};
+  /**
+    * @todo Use copyOfCells()
+  */
+  const copyOfCells = () => {
+    return JSON.parse(JSON.stringify(currentCells));
+  };
 
   const setCells = (newCells) => {
     const diffForUndoQueue = [];

@@ -14,10 +14,10 @@ describe('useCells', () => {
       expect(cells).toStrictEqual(sample);
     });
   });
-  describe('copyOfCells', () => {
+  describe('copyOfCells()', () => {
     it('should return a deep copy of cells', () => {
-      expect(copyOfCells()).toNotEqual(cells);
-      expect(copyOfCells()).toStrictEqual(cells);
+      expect(copyOfCells).not.toBe(cells);
+      expect(copyOfCells).toStrictEqual(cells);
     });
   });
 });
