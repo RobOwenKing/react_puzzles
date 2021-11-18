@@ -6,6 +6,8 @@ export function useCells(rows, cols) {
   const [currentCells, setCurrentCells] = useState(createCells(rows, cols));
   const undoQueue = useRef([]);
 
+  const copyOfCells = () => {};
+
   const setCells = (newCells) => {
     const diffForUndoQueue = [];
 
@@ -22,5 +24,5 @@ export function useCells(rows, cols) {
     setCurrentCells(newCells);
   }
 
-  return { cells: currentCells, setCells };
+  return { cells: currentCells, copyOfCells, setCells };
 }
