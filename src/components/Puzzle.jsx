@@ -9,7 +9,7 @@ import { checkSolveState } from '../helpers/checkSolveState.js';
 import { useCells } from '../hooks/useCells.js';
 
 export const Puzzle = (props) => {
-  const [cells, setCells] = useCells(props.rows, props.cols);
+  const { cells, setCells } = useCells(props.rows, props.cols);
   const [selecteds, setSelecteds] = React.useState([]);
 
   const checkErrors = (allCells, cellsToCheck) => {

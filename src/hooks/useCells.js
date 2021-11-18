@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 
 import { createCells } from '../helpers/create2DArray.js';
 
-export const useCells = (rows, cols) => {
+export function useCells(rows, cols) {
   const [currentCells, setCurrentCells] = useState(createCells(rows, cols));
   const undoQueue = useRef([]);
 
@@ -22,5 +22,5 @@ export const useCells = (rows, cols) => {
     setCurrentCells(newCells);
   }
 
-  return [currentCells, setCells];
+  return { cells: currentCells, setCells };
 }
