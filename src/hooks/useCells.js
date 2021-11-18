@@ -27,7 +27,9 @@ export function useCells(rows, cols) {
 
     undoQueue.current.push(diffForUndoQueue.current);
     setCurrentCells(newCells);
-  }
+  };
 
-  return { cells: currentCells, copyOfCells, setCells };
+  const undo = () => {};
+
+  return { cells: currentCells, copyOfCells, setCells, undo };
 }

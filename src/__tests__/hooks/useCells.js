@@ -20,4 +20,34 @@ describe('useCells', () => {
       expect(copyOfCells).toStrictEqual(cells);
     });
   });
+  describe('undo()', () => {
+    const original = JSON.parse(JSON.stringify(result.current.cells));
+    const stepOne = JSON.parse(JSON.stringify(result.current.cells));
+    stepOne[0].entry = 'star';
+    act(() => {
+      result.current.setCells(stepOne);
+    });
+    const stepTwo = JSON.parse(JSON.stringify(result.current.cells));
+    stepTwo[0].entry = 'dot';
+    stepTwo[1].entry = 'dot';
+    act(() => {
+      result.current.setCells(stepTwo);
+    });
+    it('should allow you to undo once', () => {
+      expect(result.current.cells[0].entry).toBe('dot');
+      expect(result.current.cells[1].entry).toBe('dot');
+      result.current.undo();
+      expect(result.current.cells[0].entry).toBe('star');
+      expect(result.current.cells[1]?.entry).toBe(null);
+      expect(result.current.cells).toStrictEqual(stepOne);
+    });
+    it('should allow you to undo twice', () => {
+      result.current.undo();
+      expect(result.current.cells).toStrictEqual(original);
+    });
+    it('should not cause an error when nothing is left to undo', () => {
+      result.current.undo();
+      expect(result.current.cells).toStrictEqual(original);
+    });
+  });
 });
