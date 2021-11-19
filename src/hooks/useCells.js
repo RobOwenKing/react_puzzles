@@ -9,7 +9,11 @@ export function useCells(rows, cols) {
   const _isMounted = useRef(true);
 
   useEffect(() => {
-    return () => { _isMounted.current = false; }
+    _isMounted.current = true;
+    return () => {
+      console.log('Setting to false')
+      _isMounted.current = false;
+    }
   }, []);
 
   /**
@@ -31,7 +35,7 @@ export function useCells(rows, cols) {
     })
 
     undoQueue.current.push(diffForUndoQueue);
-    setCurrentCells(newCells);
+    if (_isMounted.current) { setCurrentCells(newCells); }
   };
 
   const undo = () => {
