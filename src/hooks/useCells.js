@@ -1,10 +1,16 @@
-import { useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { createCells } from '../helpers/create2DArray.js';
 
 export function useCells(rows, cols) {
   const [currentCells, setCurrentCells] = useState(createCells(rows, cols));
   const undoQueue = useRef([]);
+
+  const _isMounted = useRef(true);
+
+  useEffect(() => {
+    return () => { _isMounted.current = false; }
+  }, []);
 
   /**
     * @todo Use copyOfCells()
@@ -39,7 +45,7 @@ export function useCells(rows, cols) {
       }
     });
 
-    setCurrentCells(newCells);
+    if (_isMounted.current) { setCurrentCells(newCells); }
   };
 
   return { cells: currentCells, copyOfCells, setCells, undo };
