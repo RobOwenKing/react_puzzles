@@ -38,7 +38,6 @@ export const Puzzle = (props) => {
         rows={props.rows} cols={props.cols}
         checkErrors={checkErrors}
       />
-      <h2 onClick={() => undo()}>Undo</h2>
     </div>
   );
 };
