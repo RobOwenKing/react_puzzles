@@ -16,20 +16,31 @@ export function useCells(rows, cols) {
   const setCells = (newCells) => {
     const diffForUndoQueue = [];
 
-    diffForUndoQueue.current = [];
     currentCells.forEach((cell, index) => {
       const newCell = newCells[index];
-      if (cell.entry !== newCell.entry ||
+      if (cell?.entry !== newCell?.entry ||
           cell.centres.length !== newCell.centres.length ||
           cell.errors.length !== newCell.errors.length
-      ) { diffForUndoQueue.current.push(cell); }
+      ) { diffForUndoQueue.push(cell); }
     })
 
-    undoQueue.current.push(diffForUndoQueue.current);
+    undoQueue.current.push(diffForUndoQueue);
     setCurrentCells(newCells);
   };
 
-  const undo = () => {};
+  const undo = () => {
+    const diff = undoQueue.current.pop();
+
+    const newCells = copyOfCells().map((cell) => {
+      if (diff[0] && diff[0].id === cell.id) {
+        return diff.shift();
+      } else {
+        return cell;
+      }
+    });
+
+    setCurrentCells(newCells);
+  };
 
   return { cells: currentCells, copyOfCells, setCells, undo };
 }

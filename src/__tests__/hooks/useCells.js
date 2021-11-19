@@ -36,17 +36,17 @@ describe('useCells', () => {
     it('should allow you to undo once', () => {
       expect(result.current.cells[0].entry).toBe('dot');
       expect(result.current.cells[1].entry).toBe('dot');
-      result.current.undo();
+      act(() => { result.current.undo(); });
       expect(result.current.cells[0].entry).toBe('star');
       expect(result.current.cells[1]?.entry).toBe(null);
       expect(result.current.cells).toStrictEqual(stepOne);
     });
     it('should allow you to undo twice', () => {
-      result.current.undo();
+      act(() => { result.current.undo(); });
       expect(result.current.cells).toStrictEqual(original);
     });
     it('should not cause an error when nothing is left to undo', () => {
-      result.current.undo();
+      act(() => { result.current.undo(); });
       expect(result.current.cells).toStrictEqual(original);
     });
   });
