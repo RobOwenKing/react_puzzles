@@ -11,7 +11,6 @@ export function useCells(rows, cols) {
   useEffect(() => {
     _isMounted.current = true;
     return () => {
-      console.log('Setting to false')
       _isMounted.current = false;
     }
   }, []);
@@ -39,6 +38,8 @@ export function useCells(rows, cols) {
   };
 
   const undo = () => {
+    if (undoQueue.current.length === 0) { return; }
+
     const diff = undoQueue.current.pop();
 
     const newCells = copyOfCells().map((cell) => {
