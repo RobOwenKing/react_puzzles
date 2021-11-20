@@ -42,7 +42,7 @@ export function useCells(rows, cols) {
   };
 
   const undo = () => {
-    if (undoQueue.current.length === 0) { return; }
+    if (!canUndo()) { return; }
 
     const diff = undoQueue.current.pop();
 
