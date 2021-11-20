@@ -37,6 +37,10 @@ export function useCells(rows, cols) {
     if (_isMounted.current) { setCurrentCells(newCells); }
   };
 
+  const canUndo = () => {
+    return undoQueue.current.length !== 0;
+  };
+
   const undo = () => {
     if (undoQueue.current.length === 0) { return; }
 
@@ -53,5 +57,5 @@ export function useCells(rows, cols) {
     if (_isMounted.current) { setCurrentCells(newCells); }
   };
 
-  return { cells: currentCells, copyOfCells, setCells, undo };
+  return { cells: currentCells, copyOfCells, setCells, canUndo, undo };
 }
