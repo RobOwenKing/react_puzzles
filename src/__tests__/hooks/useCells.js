@@ -79,4 +79,30 @@ describe('useCells', () => {
       expect(result.current.cells).toStrictEqual(original);
     });
   });
+  describe('canUndo()', () => {
+    it('should return false at first', () => {
+      const { result } = renderHook(() => useCells(3, 4));
+
+      expect(result.current.canUndo()).toStrictEqual(false);
+    });
+    it('should return true when moves to undo', () => {
+      const { result } = renderHook(() => useCells(3, 4));
+      const stepOne = JSON.parse(JSON.stringify(result.current.cells));
+      stepOne[0].entry = 'star';
+
+      act(() => { result.current.setCells(stepOne); });
+
+      expect(result.current.canUndo()).toStrictEqual(true);
+    });
+    it('should return false once all moves undone', () => {
+      const { result } = renderHook(() => useCells(3, 4));
+      const stepOne = JSON.parse(JSON.stringify(result.current.cells));
+      stepOne[0].entry = 'star';
+
+      act(() => { result.current.setCells(stepOne); });
+      act(() => { result.current.undo(); });
+
+      expect(result.current.canUndo()).toStrictEqual(false);
+    });
+  });
 });
