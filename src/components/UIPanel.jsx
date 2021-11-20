@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Cell } from './Cell.jsx';
 
-export const UIPanel = ({ inputHandler, inputMap }) => {
+export const UIPanel = ({ inputHandler, inputMap, undo }) => {
   const inputs = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
   const handleMouseDown = (event, id) => { inputHandler(id, false, false); };

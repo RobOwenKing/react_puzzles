@@ -8,7 +8,7 @@ import { INPUT_TO_ENTRY, handleKeyPress } from '../helpers/handleKeyPress.js';
 
 import { useEventListener } from '../hooks/useEventListener.js';
 
-export const PlayerUI = ({ puzzle, selecteds, setSelecteds, cells, setCells, rows, cols, checkErrors }) => {
+export const PlayerUI = ({ puzzle, selecteds, setSelecteds, cells, setCells, undo, rows, cols, checkErrors }) => {
   const inputHandler = (key, ctrl, shft) => {
     if (key in INPUT_TO_ENTRY) {
       setCells(handleKeyPress(key, cells, selecteds, checkErrors));
@@ -28,6 +28,7 @@ export const PlayerUI = ({ puzzle, selecteds, setSelecteds, cells, setCells, row
       <UIPanel
         inputHandler={inputHandler}
         inputMap={INPUT_TO_ENTRY}
+        undo={undo}
       />
     </div>
   );
