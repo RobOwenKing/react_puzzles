@@ -171,4 +171,32 @@ describe('useCells', () => {
       expect(result.current.cells).toStrictEqual(secondStepTwo);
     });
   });
+  describe('canRedo()', () => {
+    it('should return false at first', () => {
+      const { result } = renderHook(() => useCells(3, 4));
+
+      expect(result.current.canRedo()).toStrictEqual(false);
+    });
+    it('should return true when moves to redo', () => {
+      const { result } = renderHook(() => useCells(3, 4));
+      const stepOne = JSON.parse(JSON.stringify(result.current.cells));
+      stepOne[0].entry = 'star';
+
+      act(() => { result.current.setCells(stepOne); });
+      act(() => { result.current.undo(); });
+
+      expect(result.current.canRedo()).toStrictEqual(true);
+    });
+    it('should return false once all moves undone', () => {
+      const { result } = renderHook(() => useCells(3, 4));
+      const stepOne = JSON.parse(JSON.stringify(result.current.cells));
+      stepOne[0].entry = 'star';
+
+      act(() => { result.current.setCells(stepOne); });
+      act(() => { result.current.undo(); });
+      act(() => { result.current.redo(); });
+
+      expect(result.current.canRedo()).toStrictEqual(false);
+    });
+  });
 });
