@@ -65,6 +65,7 @@ export function useCells(rows, cols) {
 
   const redo = () => {
     // if (!canUndo()) { return; }
+    if (redoQueue.current.length === 0) { return; }
 
     const undoDiff = [];
     const redoDiff = redoQueue.current.pop();
