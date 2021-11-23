@@ -35,7 +35,10 @@ export function useCells(rows, cols) {
     })
 
     undoQueue.current.push(diffForUndoQueue);
-    if (_isMounted.current) { setCurrentCells(newCells); }
+    if (_isMounted.current) {
+      setCurrentCells(newCells);
+      redoQueue.current = [];
+    }
   };
 
   const canUndo = () => {
