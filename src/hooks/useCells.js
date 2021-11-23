@@ -66,9 +66,12 @@ export function useCells(rows, cols) {
     }
   };
 
+  const canRedo = () => {
+    return redoQueue.current.length !== 0;
+  };
+
   const redo = () => {
-    // if (!canUndo()) { return; }
-    if (redoQueue.current.length === 0) { return; }
+    if (!canRedo()) { return; }
 
     const undoDiff = [];
     const redoDiff = redoQueue.current.pop();
@@ -86,10 +89,6 @@ export function useCells(rows, cols) {
       setCurrentCells(newCells);
       undoQueue.current.push(redoDiff);
     }
-  };
-
-  const canRedo = () => {
-    return redoQueue.current.length !== 0;
   };
 
   return { cells: currentCells, copyOfCells, setCells, canUndo, undo, canRedo, redo };
