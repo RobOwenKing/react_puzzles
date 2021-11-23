@@ -105,4 +105,53 @@ describe('useCells', () => {
       expect(result.current.canUndo()).toStrictEqual(false);
     });
   });
+  describe('redo()', () => {
+    it('should allow you to redo once', () => {
+      const { result } = renderHook(() => useCells(3, 4));
+      const stepOne = JSON.parse(JSON.stringify(result.current.cells));
+      stepOne[0].entry = 'star';
+      const stepTwo = JSON.parse(JSON.stringify(result.current.cells));
+      stepTwo[0].entry = 'dot';
+      stepTwo[1].entry = 'dot';
+
+      act(() => { result.current.setCells(stepOne); });
+      act(() => { result.current.setCells(stepTwo); });
+
+      act(() => { result.current.undo(); });
+      act(() => { result.current.redo(); });
+
+      expect(result.current.cells).toStrictEqual(stepTwo);
+    });
+    it('should allow you to redo twice', () => {
+      const { result } = renderHook(() => useCells(3, 4));
+      const original = JSON.parse(JSON.stringify(result.current.cells));
+      const stepOne = JSON.parse(JSON.stringify(result.current.cells));
+      stepOne[0].entry = 'star';
+      const stepTwo = JSON.parse(JSON.stringify(result.current.cells));
+      stepTwo[0].entry = 'dot';
+      stepTwo[1].entry = 'dot';
+
+      act(() => { result.current.setCells(stepOne); });
+      act(() => { result.current.setCells(stepTwo); });
+      act(() => { result.current.undo(); });
+      act(() => { result.current.undo(); });
+      act(() => { result.current.redo(); });
+      act(() => { result.current.redo(); });
+
+      expect(result.current.cells).toStrictEqual(stepTwo);
+    });
+    it('should not cause an error when nothing is left to undo', () => {
+      const { result } = renderHook(() => useCells(3, 4));
+      const original = JSON.parse(JSON.stringify(result.current.cells));
+      const stepOne = JSON.parse(JSON.stringify(result.current.cells));
+      stepOne[0].entry = 'star';
+
+      act(() => { result.current.setCells(stepOne); });
+      act(() => { result.current.undo(); });
+      act(() => { result.current.redo(); });
+      act(() => { result.current.redo(); });
+
+      expect(result.current.cells).toStrictEqual(stepOne);
+    });
+  });
 });
