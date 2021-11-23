@@ -88,5 +88,9 @@ export function useCells(rows, cols) {
     }
   };
 
-  return { cells: currentCells, copyOfCells, setCells, canUndo, undo, redo };
+  const canRedo = () => {
+    return redoQueue.current.length !== 0;
+  };
+
+  return { cells: currentCells, copyOfCells, setCells, canUndo, undo, canRedo, redo };
 }
