@@ -124,7 +124,6 @@ describe('useCells', () => {
     });
     it('should allow you to redo twice', () => {
       const { result } = renderHook(() => useCells(3, 4));
-      const original = JSON.parse(JSON.stringify(result.current.cells));
       const stepOne = JSON.parse(JSON.stringify(result.current.cells));
       stepOne[0].entry = 'star';
       const stepTwo = JSON.parse(JSON.stringify(result.current.cells));
@@ -142,7 +141,6 @@ describe('useCells', () => {
     });
     it('should not cause an error when nothing is left to undo', () => {
       const { result } = renderHook(() => useCells(3, 4));
-      const original = JSON.parse(JSON.stringify(result.current.cells));
       const stepOne = JSON.parse(JSON.stringify(result.current.cells));
       stepOne[0].entry = 'star';
 
@@ -152,6 +150,25 @@ describe('useCells', () => {
       act(() => { result.current.redo(); });
 
       expect(result.current.cells).toStrictEqual(stepOne);
+    });
+    it('should clear the redo queue after new moves', () => {
+      const { result } = renderHook(() => useCells(3, 4));
+      const stepOne = JSON.parse(JSON.stringify(result.current.cells));
+      stepOne[0].entry = 'star';
+      const stepTwo = JSON.parse(JSON.stringify(result.current.cells));
+      stepTwo[0].entry = 'dot';
+      stepTwo[1].entry = 'dot';
+      const secondStepTwo = JSON.parse(JSON.stringify(result.current.cells));
+      secondStepTwo[2].entry = 'dot';
+
+      act(() => { result.current.setCells(stepOne); });
+      act(() => { result.current.setCells(stepTwo); });
+
+      act(() => { result.current.undo(); });
+      act(() => { result.current.setCells(secondStepTwo); });
+      act(() => { result.current.redo(); });
+
+      expect(result.current.cells).toStrictEqual(secondStepTwo);
     });
   });
 });
