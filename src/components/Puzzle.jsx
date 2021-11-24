@@ -5,17 +5,11 @@ import { PlayerUI } from './PlayerUI.jsx';
 
 import { checkCellForErrors } from '../helpers/checkCellForErrors.js';
 import { checkSolveState } from '../helpers/checkSolveState.js';
-import { createCells } from '../helpers/create2DArray.js';
 
-const initialCells = (props) => {
-  if (props.cells) { return props.cells; }
-  if (props.rows && props.cols) { return createCells(props.rows, props.cols); }
-
-  throw new Error('<Puzzle> needs either props.cells or props.rows and props.cols');
-};
+import { useCells } from '../hooks/useCells.js';
 
 export const Puzzle = (props) => {
-  const [cells, setCells] = React.useState(initialCells(props));
+  const { cells, setCells, undo } = useCells(props.rows, props.cols);
   const [selecteds, setSelecteds] = React.useState([]);
 
   const checkErrors = (allCells, cellsToCheck) => {
@@ -40,7 +34,7 @@ export const Puzzle = (props) => {
       <PlayerUI
         puzzle={props.puzzle}
         selecteds={selecteds} setSelecteds={setSelecteds}
-        cells={cells} setCells={setCells}
+        cells={cells} setCells={setCells} undo={undo}
         rows={props.rows} cols={props.cols}
         checkErrors={checkErrors}
       />
