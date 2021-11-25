@@ -9,7 +9,7 @@ export const CellCentre = ({ centres, x, y, cellSize }) => {
     } else {
       return centres;
     }
-  }
+  };
 
   return (
     <>

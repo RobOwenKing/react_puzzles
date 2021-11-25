@@ -7,12 +7,12 @@ export const Cell = ({ i, j, id, contents, className, cellSize, mouseDownHandler
   const handleMouseDown = (event) => {
     event.preventDefault();
     mouseDownHandler(event, id);
-  }
+  };
 
   const handleMouseOver = (event) => {
     event.preventDefault();
     mouseOverHandler(id);
-  }
+  };
 
   const formatContents = () => {
     if (contents?.entry?.length > 0) {
@@ -29,7 +29,7 @@ export const Cell = ({ i, j, id, contents, className, cellSize, mouseDownHandler
             cellSize={cellSize} />);
       }
     }
-  }
+  };
 
   return (
     <>

@@ -12,7 +12,8 @@ const pushCellToSelecteds = (id, selecteds, setSelecteds) => {
 };
 
 const addDeselectListener = (setSelecteds) => {
-  const puzzle = document.getElementById('puzzle')
+  const puzzle = document.getElementById('puzzle');
+
   puzzle.addEventListener('click', (event) => {
       if (event.path[0] === puzzle) {
         setSelecteds([]);
