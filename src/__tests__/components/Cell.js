@@ -1,4 +1,5 @@
 import { render } from '@testing-library/react';
+
 import { Cell } from '../../components/Cell.jsx';
 
 describe('Cell', () => {

@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+
 import { Rules } from '../../components/Rules.jsx';
 
 describe('Rules', () => {
