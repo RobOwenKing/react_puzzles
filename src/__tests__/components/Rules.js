@@ -10,7 +10,6 @@ describe('Rules', () => {
     const { container } = render(<Rules puzzle={{}} />);
     expect(container.querySelector('summary')).toHaveTextContent('Rules');
   });
-
   it('should render a rule when used in the puzzle', () => {
     render(<Rules puzzle={{ starbattle: 2 }} />);
     expect(screen.getByRole('listitem')).toHaveTextContent('Star Battle');
