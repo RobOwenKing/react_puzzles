@@ -22,7 +22,7 @@ describe('App', () => {
     fireEvent.mouseDown(firstCell);
     expect(container.querySelector('.selected')).toBeTruthy();
   });
-  it('should allow multiple cells to be selected', () => {
+  it('should allow multiple cells to be selected with the mouse by holding ctrl', () => {
     const { container } = render(<App />);
     const firstCell = container.querySelectorAll('rect.cell')[0];
     const secondCell = container.querySelectorAll('rect.cell')[1];
@@ -37,6 +37,39 @@ describe('App', () => {
     fireEvent.mouseDown(firstCell);
     fireEvent.mouseDown(secondCell, { ctrlKey: false, shiftKey: false });
     expect(container.querySelectorAll('.selected').length === 1).toBeTruthy();
+  });
+  it('should allow multiple cells to be selected with the mouse by holding and dragging', () => {
+    const { container } = render(<App />);
+    const firstCell = container.querySelectorAll('rect.cell')[0];
+    const secondCell = container.querySelectorAll('rect.cell')[1];
+    fireEvent.mouseDown(firstCell);
+    fireEvent.mouseOver(secondCell);
+    expect(container.querySelectorAll('.selected').length === 2).toBeTruthy();
+  });
+  it('should deselect cells when clicking after releasing the mouse after holding and dragging', () => {
+    const { container } = render(<App />);
+    const firstCell = container.querySelectorAll('rect.cell')[0];
+    const secondCell = container.querySelectorAll('rect.cell')[1];
+    const thirdCell = container.querySelectorAll('rect.cell')[2];
+    fireEvent.mouseDown(firstCell);
+    fireEvent.mouseOver(secondCell);
+    fireEvent.mouseUp(secondCell);
+    fireEvent.mouseDown(thirdCell);
+    expect(container.querySelectorAll('.selected').length === 1).toBeTruthy();
+  });
+  it('should allow multiple cells to be selected with the arrows by holding shift', () => {
+    const { container } = render(<App />);
+    const firstCell = container.querySelectorAll('rect.cell')[0];
+    fireEvent.mouseDown(firstCell);
+    fireEvent.keyDown(firstCell, { key: 'ArrowDown', shiftKey: true });
+    expect(container.querySelectorAll('.selected').length === 2).toBeTruthy();
+  });
+  it('should allow entries to be made', () => {
+    const { container } = render(<App />);
+    const firstCell = container.querySelectorAll('rect.cell')[0];
+    fireEvent.mouseDown(firstCell);
+    fireEvent.keyDown(firstCell, { key: '2' });
+    expect(screen.getAllByRole('img')[0]).toHaveTextContent('star-solid.svg');
   });
 });
 
