@@ -18,7 +18,7 @@ export const Regions = ({ rows, cols, regions, cellSize }) => {
       new Array(cols + 1).fill('0').map((element, index) => {
         return (<path className="region" key={index} d={`M ${index * cellSize} 0 ${colD(index)}`}></path>)
       })
-    )
+    );
   };
 
   const rowD = (j) => {
@@ -38,7 +38,7 @@ export const Regions = ({ rows, cols, regions, cellSize }) => {
       new Array(rows + 1).fill('0').map((element, index) => {
         return (<path className="region" key={index} d={`M 0 ${index * cellSize} ${rowD(index)}`}></path>)
       })
-    )
+    );
   };
 
   return (

@@ -19,7 +19,7 @@ export const PlayerUI = ({ puzzle, selecteds, setSelecteds, cells, setCells, und
 
   useEventListener('keydown', (e) => {
     e.preventDefault();
-    inputHandler(e.key, e.ctrlKey, e.shiftKey)
+    inputHandler(e.key, e.ctrlKey, e.shiftKey);
   });
 
   return (
