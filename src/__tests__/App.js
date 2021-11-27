@@ -22,6 +22,22 @@ describe('App', () => {
     fireEvent.mouseDown(firstCell);
     expect(container.querySelector('.selected')).toBeTruthy();
   });
+  it('should allow multiple cells to be selected', () => {
+    const { container } = render(<App />);
+    const firstCell = container.querySelectorAll('rect.cell')[0];
+    const secondCell = container.querySelectorAll('rect.cell')[1];
+    fireEvent.mouseDown(firstCell);
+    fireEvent.mouseDown(secondCell, { ctrlKey: true });
+    expect(container.querySelectorAll('.selected').length === 2).toBeTruthy();
+  });
+  it('should deselect selected cell if neither ctrl or shift held down', () => {
+    const { container } = render(<App />);
+    const firstCell = container.querySelectorAll('rect.cell')[0];
+    const secondCell = container.querySelectorAll('rect.cell')[1];
+    fireEvent.mouseDown(firstCell);
+    fireEvent.mouseDown(secondCell, { ctrlKey: false, shiftKey: false });
+    expect(container.querySelectorAll('.selected').length === 1).toBeTruthy();
+  });
 });
 
 /*
