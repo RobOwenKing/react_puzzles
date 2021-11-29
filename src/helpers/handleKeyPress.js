@@ -1,7 +1,8 @@
 export const INPUT_TO_ENTRY = {
   '1': {'entry': 'star'},
   '2': {'centres': 'star'},
-  '3': {'entry': 'dot'}
+  '3': {'entry': 'dot'},
+  '4': {'centres': 'red'}
 };
 
 const updateCellEntry = (cells, id, newEntry) => {
