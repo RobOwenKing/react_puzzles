@@ -2,7 +2,7 @@ export const INPUT_TO_ENTRY = {
   '1': {'entry': 'star'},
   '2': {'centres': 'star'},
   '3': {'entry': 'dot'},
-  '4': {'centres': 'red'}
+  '4': {'centres': 'hsl(0 67% 67%)'}
 };
 
 const updateCellEntry = (cells, id, newEntry) => {
