@@ -13,7 +13,7 @@ export const CellContents = ({ contents, x, y, size }) => {
       toRender = <circle cx={x} cy={y} r={size * 0.2} />;
       break;
     case 'red':
-      toRender = <rect x={x} y={y} width={size} height={size} style={{fill: 'red'}} />;
+      toRender = <rect x={x - (size/2)} y={y - (size/2)} width={size} height={size} style={{fill: 'red'}} />;
       break;
     default:
       return null;
