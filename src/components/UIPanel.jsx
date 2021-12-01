@@ -20,6 +20,29 @@ export const UIPanel = ({ inputHandler, inputMap, undo }) => {
         selected={false}
       />
     );
+  };
+
+  const returnColourCell = (input, i, j) => {
+    return (
+      <rect
+        key={input} id={input}
+        className="cell-ip"
+        x={i * 100} y={j * 100}
+        width={100} height={100}
+        style={{fill: inputMap[input].colours}}
+        onMouseDown={handleMouseDownOnColour}
+      />
+    );
+  };
+
+  const returnPlaceholderRect = (input, i, j) => {
+    return (
+      <rect
+        key={input} className="not-cell"
+        x={i * 100} y={j * 100}
+        width={100} height={100}
+      />
+    );
   }
 
   const cellOrRect = (input, index) => {
@@ -30,26 +53,10 @@ export const UIPanel = ({ inputHandler, inputMap, undo }) => {
       if (!inputMap[input].colours) {
         return returnEntryCell(input, i, j);
       } else {
-        return (
-          <rect
-            key={input} id={input}
-            className="cell-ip"
-            x={i * 100} y={j * 100}
-            width={100} height={100}
-            style={{fill: inputMap[input].colours}}
-            onMouseDown={handleMouseDownOnColour}
-            selected={false}
-          />
-        );
+        return returnColourCell(input, i, j);
       }
     } else {
-      return (
-        <rect
-          key={input} className="not-cell"
-          x={i * 100} y={j * 100}
-          width={100} height={100}
-        />
-      );
+      return returnPlaceholderRect(input, i, j);
     }
   }
 
