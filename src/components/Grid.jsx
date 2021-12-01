@@ -55,6 +55,22 @@ export const Grid = ({ rows, cols, cells, selecteds, setSelecteds, constraints, 
       id="grid" role="img"
       viewBox={`-16 -16 ${(cols * cellSize) + 32} ${(rows * cellSize) + 32}`}
     >
+      <g id="backgrounds">
+        {cells.map((cell, index) => {
+          if (!cell.colour) {
+            return '';
+          } else {
+            return (
+              <rect
+                key={index}
+                x={cell.i * cellSize} y={cell.j * cellSize}
+                width={cellSize} height={cellSize}
+                style={{fill: cell.colour}}
+              />
+            );
+          }
+        })}
+      </g>
       { regions.length > 1 &&
             <Regions
               rows={rows} cols={cols}

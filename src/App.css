@@ -28,7 +28,7 @@ rect {
   stroke-width: 1;
 }
 
-#input-panel rect {
+.cell-ip, .not-cell {
   rx: 10;
 }
 
