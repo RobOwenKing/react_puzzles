@@ -9,23 +9,26 @@ export const UIPanel = ({ inputHandler, inputMap, undo }) => {
   const handleMouseDownOnColour = (event) => { handleMouseDown(event, event.target.id); }
   const handleMouseOver = () => { return; };
 
+  const returnEntryCell = (input, i, j) => {
+    return (
+      <Cell
+        key={input} id={input}
+        contents={inputMap[input]} className="cell-ip"
+        i={i} j={j} cellSize={100}
+        mouseDownHandler={handleMouseDown}
+        mouseOverHandler={handleMouseOver}
+        selected={false}
+      />
+    );
+  }
+
   const cellOrRect = (input, index) => {
     const i = index % 3;
     const j = Math.floor(index / 3);
 
-
     if (inputMap[input]) {
       if (!inputMap[input].colours) {
-        return (
-          <Cell
-            key={input} id={input}
-            contents={inputMap[input]} className="cell-ip"
-            i={i} j={j} cellSize={100}
-            mouseDownHandler={handleMouseDown}
-            mouseOverHandler={handleMouseOver}
-            selected={false}
-          />
-        );
+        return returnEntryCell(input, i, j);
       } else {
         return (
           <rect
