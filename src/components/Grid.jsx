@@ -62,6 +62,7 @@ export const Grid = ({ rows, cols, cells, selecteds, setSelecteds, constraints, 
           } else {
             return (
               <rect
+                key={index}
                 x={cell.i * cellSize} y={cell.j * cellSize}
                 width={cellSize} height={cellSize}
                 style={{fill: cell.colour}}
