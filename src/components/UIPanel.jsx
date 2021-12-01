@@ -22,7 +22,7 @@ export const UIPanel = ({ inputHandler, inputMap, undo }) => {
     );
   };
 
-  const returnColourCell = (input, i, j) => {
+  const returnColourRect = (input, i, j) => {
     return (
       <rect
         key={input} id={input}
@@ -45,7 +45,7 @@ export const UIPanel = ({ inputHandler, inputMap, undo }) => {
     );
   }
 
-  const cellOrRect = (input, index) => {
+  const inputToSVG = (input, index) => {
     const i = index % 3;
     const j = Math.floor(index / 3);
 
@@ -53,7 +53,7 @@ export const UIPanel = ({ inputHandler, inputMap, undo }) => {
       if (!inputMap[input].colours) {
         return returnEntryCell(input, i, j);
       } else {
-        return returnColourCell(input, i, j);
+        return returnColourRect(input, i, j);
       }
     } else {
       return returnPlaceholderRect(input, i, j);
@@ -67,7 +67,7 @@ export const UIPanel = ({ inputHandler, inputMap, undo }) => {
       viewBox="-16 -16 332 332"
     >
       <g id="inputs">
-        {inputs.map((input, index) => { return cellOrRect(input, index); })}
+        {inputs.map((input, index) => { return inputToSVG(input, index); })}
       </g>
     </svg>
   );
