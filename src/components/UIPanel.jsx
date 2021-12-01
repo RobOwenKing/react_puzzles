@@ -29,7 +29,7 @@ export const UIPanel = ({ inputHandler, inputMap, undo }) => {
         className="cell-ip"
         x={i * 100} y={j * 100}
         width={100} height={100}
-        style={{fill: inputMap[input].colours}}
+        style={{fill: inputMap[input].colour}}
         onMouseDown={handleMouseDownOnColour}
       />
     );
@@ -43,14 +43,14 @@ export const UIPanel = ({ inputHandler, inputMap, undo }) => {
         width={100} height={100}
       />
     );
-  }
+  };
 
   const inputToSVG = (input, index) => {
     const i = index % 3;
     const j = Math.floor(index / 3);
 
     if (inputMap[input]) {
-      if (!inputMap[input].colours) {
+      if (!inputMap[input].colour) {
         return returnEntryCell(input, i, j);
       } else {
         return returnColourRect(input, i, j);
@@ -58,7 +58,7 @@ export const UIPanel = ({ inputHandler, inputMap, undo }) => {
     } else {
       return returnPlaceholderRect(input, i, j);
     }
-  }
+  };
 
   return (
     <svg
