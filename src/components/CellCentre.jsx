@@ -11,13 +11,18 @@ export const CellCentre = ({ centres, x, y, cellSize }) => {
     }
   };
 
+  const formatSingleContents = () => {
+    return (
+      <CellContents
+          contents={centres}
+          x={x} y={y}
+          size={cellSize * 0.2} />
+    )
+  };
+
   return (
     <>
-      <CellContents
-          contents={contents()}
-          x={x} y={y}
-          size={cellSize * 0.2}
-          />
+      { Array.isArray(centres) ? contents() : formatSingleContents() }
     </>
   );
 };

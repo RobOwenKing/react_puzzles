@@ -62,31 +62,31 @@ export const Grid = ({ rows, cols, cells, selecteds, setSelecteds, constraints, 
           } else {
             return (
               <rect
-                key={index}
-                x={cell.i * cellSize} y={cell.j * cellSize}
-                width={cellSize} height={cellSize}
-                style={{fill: cell.colour}}
+                  key={index}
+                  x={cell.i * cellSize} y={cell.j * cellSize}
+                  width={cellSize} height={cellSize}
+                  style={{fill: cell.colour}}
               />
             );
           }
         })}
       </g>
       { regions.length > 1 &&
-            <Regions
+          <Regions
               rows={rows} cols={cols}
               regions={regions}
               cellSize={cellSize}
-            /> }
+          /> }
       <g id="cells" onMouseUp={mouseUpHandler}>
         {cells.map((cell) => {
           return (
             <Cell
-              key={cell.id} id={cell.id}
-              contents={cell} className="cell"
-              i={cell.i} j={cell.j} cellSize={cellSize}
-              mouseDownHandler={handleCellMouseDown}
-              mouseOverHandler={handleCellMouseOver}
-              selected={selecteds.includes(cell.id)}
+                key={cell.id} id={cell.id}
+                contents={cell} className="cell"
+                i={cell.i} j={cell.j} cellSize={cellSize}
+                mouseDownHandler={handleCellMouseDown}
+                mouseOverHandler={handleCellMouseOver}
+                selected={selecteds.includes(cell.id)}
             />
           )
         })}
