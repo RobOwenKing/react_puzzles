@@ -87,7 +87,7 @@ export function useCells(rows, cols) {
 
     if (_isMounted.current) {
       setCurrentCells(newCells);
-      undoQueue.current.push(redoDiff);
+      undoQueue.current.push(undoDiff);
     }
   };
 
