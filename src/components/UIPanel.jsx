@@ -64,10 +64,19 @@ export const UIPanel = ({ inputHandler, inputMap, undo }) => {
     <svg
       version="1.1" xmlns="http://www.w3.org/2000/svg"
       id="input-panel" role="img"
-      viewBox="-16 -16 332 332"
+      viewBox="-16 -16 332 452"
     >
       <g id="inputs">
         {inputs.map((input, index) => { return inputToSVG(input, index); })}
+      </g>
+      <g id="controls">
+        <Cell
+          contents={{entry: 'star'}} className="cell-ip"
+          i={0} j={3.2} cellSize={100}
+          mouseDownHandler={() => { undo(); }}
+          mouseOverHandler={handleMouseOver}
+          selected={false}
+        />
       </g>
     </svg>
   );
