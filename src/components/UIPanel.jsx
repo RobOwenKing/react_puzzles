@@ -71,7 +71,7 @@ export const UIPanel = ({ inputHandler, inputMap, undo }) => {
       </g>
       <g id="controls">
         <Cell
-          contents={{entry: 'star'}} className="cell-ip"
+          contents={{entry: 'undo'}} className="cell-ip"
           i={0} j={3.2} cellSize={100}
           mouseDownHandler={() => { undo(); }}
           mouseOverHandler={handleMouseOver}
