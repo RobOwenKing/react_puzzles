@@ -78,7 +78,7 @@ export const UIPanel = ({ inputHandler, inputMap, undo, redo }) => {
           selected={false}
         />
         <Cell
-          contents={{entry: 'star'}} className="cell-ip"
+          contents={{entry: 'redo'}} className="cell-ip"
           i={1} j={3.2} cellSize={100}
           mouseDownHandler={() => { redo(); }}
           mouseOverHandler={handleMouseOver}
