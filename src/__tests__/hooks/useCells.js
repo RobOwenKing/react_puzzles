@@ -170,6 +170,23 @@ describe('useCells', () => {
 
       expect(result.current.cells).toStrictEqual(secondStepTwo);
     });
+    it('should allow for multiple redos and undos', () => {
+      const { result } = renderHook(() => useCells(3, 4));
+      const stepOne = JSON.parse(JSON.stringify(result.current.cells));
+      stepOne[0].entry = 'star';
+      const stepTwo = JSON.parse(JSON.stringify(result.current.cells));
+      stepTwo[0].entry = 'dot';
+      stepTwo[1].entry = 'dot';
+
+      act(() => { result.current.setCells(stepOne); });
+      act(() => { result.current.setCells(stepTwo); });
+
+      act(() => { result.current.undo(); });
+      act(() => { result.current.redo(); });
+      act(() => { result.current.undo(); });
+
+      expect(result.current.cells).toStrictEqual(stepOne);
+    });
   });
   describe('canRedo()', () => {
     it('should return false at first', () => {
