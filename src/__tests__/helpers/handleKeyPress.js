@@ -1,24 +1,25 @@
 import { handleKeyPress } from '../../helpers/handleKeyPress.js';
 
 import { createCells } from '../../helpers/create2DArray.js';
+import { INPUT_MAPS } from '../../helpers/inputMaps.js';
 
 describe('handleKeyPress()', () => {
   let cells = createCells(3, 3);
   const checkErrors = () => { return true; };
   it('should return an Array of the same length as the passed cells', () => {
-    const sample = handleKeyPress('1', cells, [0], checkErrors);
+    const sample = handleKeyPress('1', cells, [0], checkErrors, INPUT_MAPS);
     expect(sample).toBeInstanceOf(Array);
     expect(sample.length).toBe(cells.length);
   });
   it('should add entry correctly when passed one selected cell', () => {
-    const sample = handleKeyPress('1', cells, [0], checkErrors);
+    const sample = handleKeyPress('1', cells, [0], checkErrors, INPUT_MAPS);
     cells[0]['entry'] = 'star';
     expect(sample).toStrictEqual(cells);
 
     cells[0]['entry'] = '';
   });
   it('should add entries correctly when passed multiple selected cells', () => {
-    const sample = handleKeyPress('1', cells, [0, 1, 5], checkErrors);
+    const sample = handleKeyPress('1', cells, [0, 1, 5], checkErrors, INPUT_MAPS);
     cells[0]['entry'] = 'star';
     cells[1]['entry'] = 'star';
     cells[5]['entry'] = 'star';
@@ -29,8 +30,8 @@ describe('handleKeyPress()', () => {
     cells[5]['entry'] = '';
   });
   it('should remove an entry when user passes same again', () => {
-    const temp = handleKeyPress('1', cells, [2], checkErrors);
-    const sample = handleKeyPress('1', temp, [2], checkErrors);
+    const temp = handleKeyPress('1', cells, [2], checkErrors, INPUT_MAPS);
+    const sample = handleKeyPress('1', temp, [2], checkErrors, INPUT_MAPS);
     cells[2]['entry'] = '';
     expect(sample).toStrictEqual(cells);
   });
