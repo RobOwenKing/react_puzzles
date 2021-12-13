@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react';
 
 import { Puzzle } from '../../components/Puzzle.jsx';
 
+import { INPUT_MAPS } from '../../helpers/inputMaps.js';
 import { setDefaultRegions } from '../../helpers/setDefaultRegions.js';
 
 describe('Puzzle', () => {
@@ -11,12 +12,14 @@ describe('Puzzle', () => {
     const puzzle = { 'starbattle': 1, rows: rows, cols: cols };
     const regions = setDefaultRegions(rows, cols);
     const constraints = {};
+    const inputMaps= [INPUT_MAPS];
 
     render(<Puzzle
           rows={rows} cols={cols}
           constraints={constraints}
           puzzle={puzzle}
-          regions={regions} />
+          regions={regions}
+          inputMaps={inputMaps} />
       );
     /**
       * @todo Refactor to use getByRole
@@ -30,12 +33,14 @@ describe('Puzzle', () => {
     const puzzle = { 'starbattle': 1, rows: rows, cols: cols };
     const regions = setDefaultRegions(rows, cols);
     const constraints = {};
+    const inputMaps= [INPUT_MAPS];
 
     const { container } = render(<Puzzle
           rows={rows} cols={cols}
           constraints={constraints}
           puzzle={puzzle}
-          regions={regions} />
+          regions={regions}
+          inputMaps={inputMaps} />
       );
     expect(container.querySelectorAll('rect').length > rows * cols).toBeTruthy();
   });
