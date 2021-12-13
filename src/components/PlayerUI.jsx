@@ -5,16 +5,15 @@ import { UIPanel } from './UIPanel.jsx';
 
 import { handleArrowPress } from '../helpers/handleArrowPress.js';
 import { handleKeyPress } from '../helpers/handleKeyPress.js';
-import { INPUT_MAPS } from '../helpers/inputMaps.js';
 
 import { useEventListener } from '../hooks/useEventListener.js';
 
-export const PlayerUI = ({ puzzle, selecteds, setSelecteds, cells, setCells, undo, redo, rows, cols, checkErrors }) => {
+export const PlayerUI = ({ puzzle, selecteds, setSelecteds, cells, setCells, undo, redo, rows, cols, inputMaps, checkErrors }) => {
   const [inputSet, setInputSet] = React.useState(0);
 
   const inputHandler = (key, ctrl, shft) => {
-    if (key in INPUT_MAPS) {
-      setCells(handleKeyPress(key, cells, selecteds, checkErrors, INPUT_MAPS));
+    if (key in inputMaps[inputSet]) {
+      setCells(handleKeyPress(key, cells, selecteds, checkErrors, inputMaps[inputSet]));
     } else if (['ArrowUp', 'ArrowLeft', 'ArrowDown', 'ArrowRight'].includes(key)) {
       setSelecteds(handleArrowPress(key, ctrl, shft, selecteds, rows, cols));
     }
@@ -30,7 +29,7 @@ export const PlayerUI = ({ puzzle, selecteds, setSelecteds, cells, setCells, und
       <Rules puzzle={puzzle} />
       <UIPanel
         inputHandler={inputHandler}
-        inputMap={INPUT_MAPS}
+        inputMap={inputMaps[inputSet]}
         undo={undo} redo={redo}
       />
     </div>
