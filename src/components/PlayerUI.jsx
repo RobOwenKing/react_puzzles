@@ -12,10 +12,15 @@ export const PlayerUI = ({ puzzle, selecteds, setSelecteds, cells, setCells, und
   const [inputSet, setInputSet] = React.useState(0);
 
   const inputHandler = (key, ctrl, shft) => {
+    const setKeys = ['a', 's', 'd', 'f'];
+
     if (key in inputMaps[inputSet]) {
       setCells(handleKeyPress(key, cells, selecteds, checkErrors, inputMaps[inputSet]));
     } else if (['ArrowUp', 'ArrowLeft', 'ArrowDown', 'ArrowRight'].includes(key)) {
       setSelecteds(handleArrowPress(key, ctrl, shft, selecteds, rows, cols));
+    }else if (setKeys.includes(key)) {
+      const newInputSet = setKeys.findIndex(element => element === key);
+      if (inputMaps[newInputSet]) { setInputSet(newInputSet); }
     }
   };
 
