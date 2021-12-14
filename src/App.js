@@ -4,21 +4,21 @@ import React from 'react';
 
 import { Puzzle } from './components/Puzzle.jsx';
 
-import { INPUT_MAPS } from './helpers/inputMaps.js';
 import { puzzleToConstraints } from './helpers/puzzleToConstraints.js';
+import { puzzleToInputMaps } from './helpers/puzzleToInputMaps.js';
 import { setDefaultRegions } from './helpers/setDefaultRegions.js';
 
 function App() {
   const rows = 6;
   const cols = 6;
   const [puzzle, setPuzzle] = React.useState({ 'starbattle': 1, rows: rows, cols: cols });
-  const [inputMaps, setInputMaps] = React.useState([{'1': {'entry': 'star'}}]);
+  const [inputMaps, setInputMaps] = React.useState(puzzleToInputMaps());
   const [regions, setRegions] = React.useState(setDefaultRegions(rows, cols));
   const [constraints, setConstraints] = React.useState({});
   const constraintCount = React.useRef(0);
 
   React.useEffect(() => {
-    setInputMaps([INPUT_MAPS]);
+    setInputMaps(puzzleToInputMaps());
   }, [puzzle]);
 
   React.useEffect(() => {
