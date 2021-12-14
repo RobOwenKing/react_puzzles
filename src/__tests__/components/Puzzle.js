@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 
 import { Puzzle } from '../../components/Puzzle.jsx';
 
-import { INPUT_MAPS } from '../../helpers/inputMaps.js';
+import { puzzleToInputMaps } from '../../helpers/puzzleToInputMaps.js';
 import { setDefaultRegions } from '../../helpers/setDefaultRegions.js';
 
 describe('Puzzle', () => {
@@ -12,7 +12,7 @@ describe('Puzzle', () => {
     const puzzle = { 'starbattle': 1, rows: rows, cols: cols };
     const regions = setDefaultRegions(rows, cols);
     const constraints = {};
-    const inputMaps= [INPUT_MAPS];
+    const inputMaps= puzzleToInputMaps({ 'starbattle': 1 });
 
     render(<Puzzle
           rows={rows} cols={cols}
@@ -33,7 +33,7 @@ describe('Puzzle', () => {
     const puzzle = { 'starbattle': 1, rows: rows, cols: cols };
     const regions = setDefaultRegions(rows, cols);
     const constraints = {};
-    const inputMaps= [INPUT_MAPS];
+    const inputMaps= puzzleToInputMaps({ 'starbattle': 1 });
 
     const { container } = render(<Puzzle
           rows={rows} cols={cols}
