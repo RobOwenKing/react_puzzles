@@ -12,12 +12,14 @@ export const PlayerUI = ({ puzzle, selecteds, setSelecteds, cells, setCells, und
   const [inputSet, setInputSet] = React.useState(0);
   const [inputMode, setInputMode] = React.useState(0);
 
+  const currentMap = () => { return inputMaps[inputSet]['maps'][inputMode] };
+
   const inputHandler = (key, ctrl, shft) => {
     const setKeys = ['a', 's', 'd', 'f'];
     const modeKeys = ['z', 'x', 'c', 'v'];
 
-    if (key in inputMaps[inputSet]['maps'][inputMode]) {
-      setCells(handleKeyPress(key, cells, selecteds, checkErrors, inputMaps[inputSet]['maps'][inputMode]));
+    if (key in currentMap()) {
+      setCells(handleKeyPress(key, cells, selecteds, checkErrors, currentMap()));
     } else if (['ArrowUp', 'ArrowLeft', 'ArrowDown', 'ArrowRight'].includes(key)) {
       setSelecteds(handleArrowPress(key, ctrl, shft, selecteds, rows, cols));
     } else if (setKeys.includes(key)) {
@@ -42,7 +44,7 @@ export const PlayerUI = ({ puzzle, selecteds, setSelecteds, cells, setCells, und
       <Rules puzzle={puzzle} />
       <UIPanel
         inputHandler={inputHandler}
-        inputMap={inputMaps[inputSet]['maps'][inputMode]}
+        inputMap={currentMap()}
         undo={undo} redo={redo}
       />
     </div>
