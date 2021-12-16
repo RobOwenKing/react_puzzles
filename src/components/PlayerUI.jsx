@@ -22,7 +22,10 @@ export const PlayerUI = ({ puzzle, selecteds, setSelecteds, cells, setCells, und
       setSelecteds(handleArrowPress(key, ctrl, shft, selecteds, rows, cols));
     } else if (setKeys.includes(key)) {
       const newInputSet = setKeys.findIndex(element => element === key);
-      if (inputMaps[newInputSet]) { setInputSet(newInputSet); }
+      if (inputMaps[newInputSet]) {
+        if (!inputMaps[newInputSet]['maps'][inputMode]) { setInputMode(0); }
+        setInputSet(newInputSet);
+      }
     } else if (modeKeys.includes(key)) {
       const newInputMode = modeKeys.findIndex(element => element === key);
       if (inputMaps[inputSet]['maps'][newInputMode]) { setInputMode(newInputMode); }
