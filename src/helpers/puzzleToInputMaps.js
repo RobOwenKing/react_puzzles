@@ -23,6 +23,18 @@ const INPUT_MAPS = [
         '7': {'colour': 'hsl(240 67% 67%)'},
         '8': {'colour': 'hsl(280 67% 67%)'},
         '9': {'colour': 'hsl(320 67% 67%)'}
+      },
+      {
+        'mode': 'Centres',
+        '1': {'centres': 'hsl(0 67% 67%)'},
+        '2': {'centres': 'hsl(40 67% 67%)'},
+        '3': {'centres': 'hsl(80 67% 67%)'},
+        '4': {'centres': 'hsl(120 67% 67%)'},
+        '5': {'centres': 'hsl(160 67% 67%)'},
+        '6': {'centres': 'hsl(200 67% 67%)'},
+        '7': {'centres': 'hsl(240 67% 67%)'},
+        '8': {'centres': 'hsl(280 67% 67%)'},
+        '9': {'centres': 'hsl(320 67% 67%)'}
       }
     ]
   }
