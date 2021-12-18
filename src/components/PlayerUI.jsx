@@ -14,6 +14,17 @@ export const PlayerUI = ({ puzzle, selecteds, setSelecteds, cells, setCells, und
 
   const currentMap = () => { return inputMaps[inputSet]['maps'][inputMode] };
 
+  const updateInputSet = (newValue) => {
+    if (inputMaps[newValue]) {
+      if (!inputMaps[newValue]['maps'][inputMode]) { setInputMode(0); }
+      setInputSet(newValue);
+    }
+  };
+
+  const updateInputMode = (newValue) => {
+    if (inputMaps[inputSet]['maps'][newValue]) { setInputMode(newValue); }
+  };
+
   const inputHandler = (key, ctrl, shft) => {
     const setKeys = ['a', 's', 'd', 'f'];
     const modeKeys = ['z', 'x', 'c', 'v'];
@@ -23,14 +34,9 @@ export const PlayerUI = ({ puzzle, selecteds, setSelecteds, cells, setCells, und
     } else if (['ArrowUp', 'ArrowLeft', 'ArrowDown', 'ArrowRight'].includes(key)) {
       setSelecteds(handleArrowPress(key, ctrl, shft, selecteds, rows, cols));
     } else if (setKeys.includes(key)) {
-      const newInputSet = setKeys.findIndex(element => element === key);
-      if (inputMaps[newInputSet]) {
-        if (!inputMaps[newInputSet]['maps'][inputMode]) { setInputMode(0); }
-        setInputSet(newInputSet);
-      }
+      updateInputSet(setKeys.findIndex(element => element === key));
     } else if (modeKeys.includes(key)) {
-      const newInputMode = modeKeys.findIndex(element => element === key);
-      if (inputMaps[inputSet]['maps'][newInputMode]) { setInputMode(newInputMode); }
+      updateInputMode(modeKeys.findIndex(element => element === key));
     }
   };
 
@@ -50,3 +56,9 @@ export const PlayerUI = ({ puzzle, selecteds, setSelecteds, cells, setCells, und
     </div>
   );
 };
+
+
+/*
+"Orgullós", #paraulògic ? I tant que sóc! És la meva primera òliba això. O és un mussol? Ay! Espera, em falta "mussol"...
+Pantalla del joc Paraulògic - he trobat "32 paraules de les 86 paraules" i la última és "orgullós".
+*/
