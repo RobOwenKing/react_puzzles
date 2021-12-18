@@ -1,6 +1,7 @@
 const INPUT_MAPS = [
   {
     'for': ['starbattle'],
+    'name': 'Stars',
     'maps': [
       {
         '1': {'entry': 'star'},
@@ -11,9 +12,10 @@ const INPUT_MAPS = [
   },
   {
     'for': ['starbattle', 'colour'],
+    'name': 'Colours',
     'maps': [
       {
-        'mode': 'Colours',
+        'mode': 'Background',
         '1': {'colour': 'hsl(0 67% 67%)'},
         '2': {'colour': 'hsl(40 67% 67%)'},
         '3': {'colour': 'hsl(80 67% 67%)'},
@@ -25,7 +27,7 @@ const INPUT_MAPS = [
         '9': {'colour': 'hsl(320 67% 67%)'}
       },
       {
-        'mode': 'Centres',
+        'mode': 'Centre',
         '1': {'centres': 'hsl(0 67% 67%)'},
         '2': {'centres': 'hsl(40 67% 67%)'},
         '3': {'centres': 'hsl(80 67% 67%)'},

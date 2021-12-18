@@ -50,7 +50,8 @@ export const PlayerUI = ({ puzzle, selecteds, setSelecteds, cells, setCells, und
       <Rules puzzle={puzzle} />
       <UIPanel
         inputHandler={inputHandler}
-        inputMap={currentMap()}
+        inputMaps={inputMaps} inputMap={currentMap()}
+        updateInputSet={updateInputSet} updateInputMode={updateInputMode}
         undo={undo} redo={redo}
       />
     </div>
