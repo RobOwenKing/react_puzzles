@@ -50,16 +50,10 @@ export const PlayerUI = ({ puzzle, selecteds, setSelecteds, cells, setCells, und
       <Rules puzzle={puzzle} />
       <UIPanel
         inputHandler={inputHandler}
-        inputMaps={inputMaps} inputMap={currentMap()}
+        inputMaps={inputMaps} inputMap={currentMap()} inputSet={inputSet}
         updateInputSet={updateInputSet} updateInputMode={updateInputMode}
         undo={undo} redo={redo}
       />
     </div>
   );
 };
-
-
-/*
-"Orgullós", #paraulògic ? I tant que sóc! És la meva primera òliba això. O és un mussol? Ay! Espera, em falta "mussol"...
-Pantalla del joc Paraulògic - he trobat "32 paraules de les 86 paraules" i la última és "orgullós".
-*/

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Cell } from './Cell.jsx';
 
-export const UIPanel = ({ inputHandler, inputMaps, inputMap, undo, redo, updateInputSet, updateInputMode }) => {
+export const UIPanel = ({ inputHandler, inputMaps, inputMap, inputSet, undo, redo, updateInputSet, updateInputMode }) => {
   const inputs = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
   const handleMouseDown = (event, id) => { inputHandler(id, false, false); };
@@ -62,11 +62,18 @@ export const UIPanel = ({ inputHandler, inputMaps, inputMap, undo, redo, updateI
 
   return (
     <>
-      <ul>
-        { inputMaps.map((set, index) => {
-          return (<li key={index} onClick={() => { updateInputSet(index); }}>{set.name}</li>);
-        }) }
-      </ul>
+      <span>
+        <ul className="list-buttons">
+          { inputMaps.map((set, index) => {
+            return (<li key={index} onClick={() => { updateInputSet(index); }}>{set.name}</li>);
+          }) }
+        </ul>
+        <ul className="list-buttons">
+          { inputMaps[inputSet]['maps'].map((mode, index) => {
+            return (<li key={index} onClick={() => { updateInputMode(index); }}>{mode.mode}</li>);
+          }) }
+        </ul>
+      </span>
       <svg
         version="1.1" xmlns="http://www.w3.org/2000/svg"
         id="input-panel" role="img"

@@ -70,3 +70,12 @@ g.error svg {
 summary:hover {
   cursor: pointer;
 }
+
+.list-buttons {
+  display: inline;
+  list-style-type: none;
+}
+
+.list-buttons li {
+  cursor: pointer;
+}
