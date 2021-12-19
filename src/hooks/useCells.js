@@ -4,8 +4,8 @@ import { createCells } from '../helpers/create2DArray.js';
 
 export function useCells(rows, cols) {
   const [currentCells, setCurrentCells] = useState(createCells(rows, cols));
-  const undoQueue = useRef([]);
-  const redoQueue = useRef([]);
+  const undoStack = useRef([]);
+  const redoStack = useRef([]);
 
   const _isMounted = useRef(true);
 
@@ -24,31 +24,31 @@ export function useCells(rows, cols) {
   };
 
   const setCells = (newCells) => {
-    const diffForUndoQueue = [];
+    const diffForUndoStack = [];
 
     currentCells.forEach((cell, index) => {
       const newCell = newCells[index];
       if (cell?.entry !== newCell?.entry ||
           cell.centres.length !== newCell.centres.length ||
           cell.errors.length !== newCell.errors.length
-      ) { diffForUndoQueue.push(cell); }
+      ) { diffForUndoStack.push(cell); }
     })
 
-    undoQueue.current.push(diffForUndoQueue);
+    undoStack.current.push(diffForUndoStack);
     if (_isMounted.current) {
       setCurrentCells(newCells);
-      redoQueue.current = [];
+      redoStack.current = [];
     }
   };
 
   const canUndo = () => {
-    return undoQueue.current.length !== 0;
+    return undoStack.current.length !== 0;
   };
 
   const undo = () => {
     if (!canUndo()) { return; }
 
-    const undoDiff = undoQueue.current.pop();
+    const undoDiff = undoStack.current.pop();
     const redoDiff = [];
 
     const newCells = copyOfCells().map((cell) => {
@@ -62,19 +62,19 @@ export function useCells(rows, cols) {
 
     if (_isMounted.current) {
       setCurrentCells(newCells);
-      redoQueue.current.push(redoDiff);
+      redoStack.current.push(redoDiff);
     }
   };
 
   const canRedo = () => {
-    return redoQueue.current.length !== 0;
+    return redoStack.current.length !== 0;
   };
 
   const redo = () => {
     if (!canRedo()) { return; }
 
     const undoDiff = [];
-    const redoDiff = redoQueue.current.pop();
+    const redoDiff = redoStack.current.pop();
 
     const newCells = copyOfCells().map((cell) => {
       if (redoDiff[0] && redoDiff[0].id === cell.id) {
@@ -87,7 +87,7 @@ export function useCells(rows, cols) {
 
     if (_isMounted.current) {
       setCurrentCells(newCells);
-      undoQueue.current.push(undoDiff);
+      undoStack.current.push(undoDiff);
     }
   };
 

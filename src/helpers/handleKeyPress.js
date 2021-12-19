@@ -1,15 +1,3 @@
-export const INPUT_TO_ENTRY = {
-  '1': {'entry': 'star'},
-  '2': {'centres': 'star'},
-  '3': {'entry': 'dot'},
-  '4': {'centres': 'hsl(0 67% 67%)'},
-  '5': {'centres': 'hsl(40 67% 67%)'},
-  '6': {'centres': 'hsl(80 67% 67%)'},
-  '7': {'centres': 'hsl(120 67% 67%)'},
-  '8': {'centres': 'hsl(160 67% 67%)'},
-  '9': {'centres': 'hsl(200 67% 67%)'}
-};
-
 const updateCellEntry = (cells, id, newEntry) => {
   if ('entry' in newEntry) {
     if (cells[id]['entry'] === newEntry['entry']) {
@@ -32,9 +20,9 @@ const updateCellEntry = (cells, id, newEntry) => {
   }
 };
 
-export const handleKeyPress = (key, cells, selecteds, checkErrors) => {
+export const handleKeyPress = (key, cells, selecteds, checkErrors, inputMap) => {
   const newCells = JSON.parse(JSON.stringify(cells));
-  const newEntry = INPUT_TO_ENTRY[key];
+  const newEntry = inputMap[key];
 
   selecteds.forEach((id) => {
     updateCellEntry(newCells, id, newEntry);

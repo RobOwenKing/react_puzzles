@@ -36,6 +36,7 @@ export const Puzzle = (props) => {
         selecteds={selecteds} setSelecteds={setSelecteds}
         cells={cells} setCells={setCells} undo={undo} redo={redo}
         rows={props.rows} cols={props.cols}
+        inputMaps={props.inputMaps}
         checkErrors={checkErrors}
       />
     </div>

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Cell } from './Cell.jsx';
 
-export const UIPanel = ({ inputHandler, inputMap, undo, redo }) => {
+export const UIPanel = ({ inputHandler, inputMaps, inputMap, inputSet, inputMode, undo, redo, updateInputSet, updateInputMode }) => {
   const inputs = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
   const handleMouseDown = (event, id) => { inputHandler(id, false, false); };
@@ -61,30 +61,56 @@ export const UIPanel = ({ inputHandler, inputMap, undo, redo }) => {
   };
 
   return (
-    <svg
-      version="1.1" xmlns="http://www.w3.org/2000/svg"
-      id="input-panel" role="img"
-      viewBox="-16 -16 332 452"
-    >
-      <g id="inputs">
-        {inputs.map((input, index) => { return inputToSVG(input, index); })}
-      </g>
-      <g id="controls">
-        <Cell
-          contents={{entry: 'undo'}} className="cell-ip"
-          i={0} j={3.2} cellSize={100}
-          mouseDownHandler={() => { undo(); }}
-          mouseOverHandler={handleMouseOver}
-          selected={false}
-        />
-        <Cell
-          contents={{entry: 'redo'}} className="cell-ip"
-          i={1} j={3.2} cellSize={100}
-          mouseDownHandler={() => { redo(); }}
-          mouseOverHandler={handleMouseOver}
-          selected={false}
-        />
-      </g>
-    </svg>
+    <>
+      <span>
+        <ul className="list-buttons">
+          { inputMaps.map((set, index) => {
+            return (
+              <li key={index}
+                  onClick={() => { updateInputSet(index); }}
+                  className={index === inputSet ? 'button-true' : 'button-false'} >
+                {set.name}
+              </li>
+            );
+          }) }
+        </ul>
+        <ul className="list-buttons">
+          { inputMaps[inputSet]['maps'].map((mode, index) => {
+            return (
+              <li key={index}
+                  onClick={() => { updateInputMode(index); }}
+                  className={index === inputMode ? 'button-true' : 'button-false'} >
+                {mode.mode}
+              </li>
+            );
+          }) }
+        </ul>
+      </span>
+      <svg
+        version="1.1" xmlns="http://www.w3.org/2000/svg"
+        id="input-panel" role="img"
+        viewBox="-16 -16 332 452"
+      >
+        <g id="inputs">
+          {inputs.map((input, index) => { return inputToSVG(input, index); })}
+        </g>
+        <g id="controls">
+          <Cell
+            contents={{entry: 'undo'}} className="cell-ip"
+            i={0} j={3.2} cellSize={100}
+            mouseDownHandler={() => { undo(); }}
+            mouseOverHandler={handleMouseOver}
+            selected={false}
+          />
+          <Cell
+            contents={{entry: 'redo'}} className="cell-ip"
+            i={1} j={3.2} cellSize={100}
+            mouseDownHandler={() => { redo(); }}
+            mouseOverHandler={handleMouseOver}
+            selected={false}
+          />
+        </g>
+      </svg>
+    </>
   );
 };

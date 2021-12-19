@@ -15,7 +15,7 @@ svg#grid {
 }
 
 svg#input-panel {
-  width: 200px;
+  width: 150px;
 }
 
 #cells, #inputs {
@@ -69,4 +69,17 @@ g.error svg {
 
 summary:hover {
   cursor: pointer;
+}
+
+.list-buttons {
+  display: inline;
+  list-style-type: none;
+}
+
+.list-buttons li {
+  cursor: pointer;
+}
+
+.list-buttons .button-true {
+  text-decoration: underline;
 }
