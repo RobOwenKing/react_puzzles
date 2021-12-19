@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Cell } from './Cell.jsx';
 
-export const UIPanel = ({ inputHandler, inputMaps, inputMap, inputSet, undo, redo, updateInputSet, updateInputMode }) => {
+export const UIPanel = ({ inputHandler, inputMaps, inputMap, inputSet, inputMode, undo, redo, updateInputSet, updateInputMode }) => {
   const inputs = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
   const handleMouseDown = (event, id) => { inputHandler(id, false, false); };
@@ -76,7 +76,13 @@ export const UIPanel = ({ inputHandler, inputMaps, inputMap, inputSet, undo, red
         </ul>
         <ul className="list-buttons">
           { inputMaps[inputSet]['maps'].map((mode, index) => {
-            return (<li key={index} onClick={() => { updateInputMode(index); }}>{mode.mode}</li>);
+            return (
+              <li key={index}
+                  onClick={() => { updateInputMode(index); }}
+                  className={index === inputMode ? 'button-true' : 'button-false'} >
+                {mode.mode}
+              </li>
+            );
           }) }
         </ul>
       </span>
