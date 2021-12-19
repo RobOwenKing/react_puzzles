@@ -79,3 +79,7 @@ summary:hover {
 .list-buttons li {
   cursor: pointer;
 }
+
+.list-buttons .button-true {
+  text-decoration: underline;
+}

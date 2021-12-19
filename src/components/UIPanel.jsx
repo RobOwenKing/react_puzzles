@@ -65,7 +65,13 @@ export const UIPanel = ({ inputHandler, inputMaps, inputMap, inputSet, undo, red
       <span>
         <ul className="list-buttons">
           { inputMaps.map((set, index) => {
-            return (<li key={index} onClick={() => { updateInputSet(index); }}>{set.name}</li>);
+            return (
+              <li key={index}
+                  onClick={() => { updateInputSet(index); }}
+                  className={index === inputSet ? 'button-true' : 'button-false'} >
+                {set.name}
+              </li>
+            );
           }) }
         </ul>
         <ul className="list-buttons">
