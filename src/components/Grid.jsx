@@ -15,7 +15,7 @@ const addDeselectListener = (setSelecteds) => {
   const puzzle = document.getElementById('puzzle');
 
   puzzle.addEventListener('click', (event) => {
-      if (event.path[0] === puzzle) {
+      if (event.target === puzzle) {
         setSelecteds([]);
       }
     })
