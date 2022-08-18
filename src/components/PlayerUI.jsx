@@ -37,6 +37,8 @@ export const PlayerUI = ({ puzzle, selecteds, setSelecteds, cells, setCells, und
       updateInputSet(setKeys.findIndex(element => element === key));
     } else if (modeKeys.includes(key)) {
       updateInputMode(modeKeys.findIndex(element => element === key));
+    } else {
+      console.log(key);
     }
   };
 
